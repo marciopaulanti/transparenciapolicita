@@ -18,18 +18,18 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { navegarComChrome, subirServidor, temChrome } from './navegador-cdp.mjs';
+import { montarUrl, navegarComChrome, subirServidor, temChrome } from './navegador-cdp.mjs';
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 // `--subpath` confere a mesma coisa com o app publicado em um subdiretório
-// (/transparencia/ em vez de /). A publicação em subpasta é um caminho
-// diferente de fato: os endereços dos arquivos mudam de lugar, e é aí que
-// um link relativo quebrado apareceria.
+// (/transparenciapolicita/ em vez de /). A publicação em subpasta é um
+// caminho diferente de fato: os endereços dos arquivos mudam de lugar, e é
+// aí que um link relativo quebrado apareceria.
 const ARGUMENTOS = process.argv.slice(2);
 const EM_SUBPATH = ARGUMENTOS.includes('--subpath');
 const BASE = ARGUMENTOS.find((arg) => arg.startsWith('http')) || 'http://localhost:8765';
-const PREFIXO = EM_SUBPATH ? '/transparencia/' : '/';
+const PREFIXO = EM_SUBPATH ? '/transparenciapolicita/' : '/';
 
 const ROTAS = [
   '/',
@@ -279,7 +279,7 @@ async function checarComPlaywright() {
   const registros = [];
   for (const rota of ROTAS) {
     erros.length = 0;
-    await pagina.goto(`${servidor.base}${PREFIXO}?cb=${registros.length}#${rota}`, {
+    await pagina.goto(`${montarUrl(servidor.base, PREFIXO)}?cb=${registros.length}#${rota}`, {
       waitUntil: 'load',
     });
     await pagina.waitForTimeout(700);

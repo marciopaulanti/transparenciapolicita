@@ -4,6 +4,9 @@ Protótipo navegável do laço central do **Politicômetro** — *quem me repres
 essa pessoa fez e de onde veio cada número* — construído com as regras de produto do
 original e a direção de interação do `/apple-design`.
 
+Projeto: **transparenciapolicita**. É um projeto autossuficiente: banco, API, imagem
+Docker e publicação próprios, sem vínculo com nenhum outro sistema.
+
 > **Aviso de dados.** A geometria do mapa e os nomes dos estados e municípios são reais.
 > **Todos os números, as pessoas, os partidos e os cargos exibidos são fictícios**,
 > criados só para demonstrar a interface. Nada aqui é dado político verdadeiro.
@@ -46,6 +49,45 @@ porque rolagem horizontal só aparece no layout estreito.
 Telas verificadas: 47 em 23 rotas (navegador: chrome-cdp)
 Tudo certo: nenhuma falha de estática, rota ou console.
 ```
+
+## Banco, API e publicação
+
+O protótipo não depende de um backend de terceiro: **SQLite** é a fonte de verdade,
+a **API JSON** é a mesma porta que serve o HTML (mesma origem, zero CORS), e o
+front-end é **API-first** com fallback determinístico para o dataset embutido.
+
+```
+db/schema.sql             esquema normalizado (27 tabelas, chaves estrangeiras, WAL)
+server/seed.py            semeia o banco a partir do dataset exportado
+server/queries.py         reconstrói os objetos no formato que as telas esperam
+server/api.py             catálogo de rotas de leitura e escrita
+server/static.py          arquivos com lista de permissões e cache sem armadilha
+app/js/data/dados.js      store API-first, com redesenho silencioso ao chegar o dado
+```
+
+```bash
+make instalar      # exporta o dataset, cria o banco e popula
+make rodar         # sobe estáticos + API em http://127.0.0.1:8080
+make paridade      # confere que banco e front-end dizem a mesma coisa
+make api-viva      # muda o banco e confirma que a tela mostra o valor novo
+```
+
+**Cache sem armadilha.** O app não tem etapa de build, então não existe hash no nome
+do arquivo — e `max-age` seria mentira: o navegador serviria a versão antiga depois
+de um deploy. Módulos ES e CSS saem com `Cache-Control: no-store`; o HTML sai com
+`no-cache` e ETag derivado do conteúdo (304 quando nada mudou). Publicar passa a
+valer na hora, sem esperar expiração e sem recarregar com `?cb=`.
+
+**Publicação.** Uma imagem, um contêiner, um volume de dados e uma rede Docker
+próprios:
+
+```bash
+./deploy/deploy.sh /caminho/do/codigo   # sincroniza, constrói, sobe e confere a saúde
+```
+
+O `deploy/Caddyfile.transparenciapolicita` tem o bloco do proxy reverso pronto para
+um domínio próprio. O app responde em `127.0.0.1:8090` na VPS, o que permite ao
+proxy falar com ele sem compartilhar rede Docker com nenhum outro serviço.
 
 ## O laço central
 

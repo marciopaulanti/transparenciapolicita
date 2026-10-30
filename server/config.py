@@ -33,8 +33,9 @@ HOST = os.environ.get('TP_HOST', '0.0.0.0')
 PORTA = int(os.environ.get('TP_PORT', '8080'))
 
 # --- publicação -------------------------------------------------------------
-# Onde o app está publicado. Na raiz do domínio é '/'. Em um subdiretório
-# (gparla.com.br/transparencia/) é '/transparencia/'.
+# Onde o app está publicado. Na raiz do domínio próprio é '/'. Em um
+# subdiretório (exemplo.com/transparenciapolicita/) é o caminho com barra
+# nas duas pontas.
 #
 # O servidor usa isso para servir o index com o prefixo certo, para reconhecer
 # as próprias rotas de API sob o prefixo, e para o front-end saber onde
@@ -43,7 +44,7 @@ BASE_PATH = _normalizar_base(os.environ.get('TP_BASE_PATH', '/'))
 
 # --- dados ------------------------------------------------------------------
 DIRETORIO_DADOS = Path(os.environ.get('TP_DATA_DIR', RAIZ / 'data'))
-CAMINHO_BANCO = Path(os.environ.get('TP_DB_PATH', DIRETORIO_DADOS / 'transparencia.sqlite'))
+CAMINHO_BANCO = Path(os.environ.get('TP_DB_PATH', DIRETORIO_DADOS / 'transparenciapolicita.sqlite'))
 CAMINHO_ESQUEMA = Path(os.environ.get('TP_SCHEMA', RAIZ / 'db' / 'schema.sql'))
 CAMINHO_DATASET = Path(os.environ.get('TP_DATASET', RAIZ / 'db' / 'data' / 'dataset.json'))
 

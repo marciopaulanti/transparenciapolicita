@@ -5,7 +5,7 @@
    A camada temática mora na URL (?assunto=), então o recorte é compartilhável.
    ========================================================================== */
 
-import { CAMADAS, ESTADOS, PROJETO, valoresDaCamada } from '../data/dados.js';
+import { CAMADAS, CIDADES, ESTADOS, PESSOAS, PROJETO, valoresDaCamada } from '../data/dados.js';
 import { MAP_STATES, MAP_VIEWBOX } from '../data/br-map.js';
 import { escapeHtml, sourceNote, montarComboboxCidade } from '../components.js';
 
@@ -56,15 +56,15 @@ export function homeView({ query, navigate }) {
 
         <div class="hero__stats">
           <div class="hero__stat">
-            <p class="hero__value">10.811</p>
-            <p class="hero__label">cargos eletivos com mandato ativo</p>
+            <p class="hero__value">${PESSOAS.length}</p>
+            <p class="hero__label">pessoas com registro no protótipo</p>
           </div>
           <div class="hero__stat">
-            <p class="hero__value">5.570</p>
-            <p class="hero__label">municípios no mapa</p>
+            <p class="hero__value">${CIDADES.length}</p>
+            <p class="hero__label">municípios com registro</p>
           </div>
           <div class="hero__stat">
-            <p class="hero__value">27</p>
+            <p class="hero__value">${MAP_STATES.length}</p>
             <p class="hero__label">estados e o Distrito Federal</p>
           </div>
         </div>

@@ -215,6 +215,16 @@ const EXPRESSAO_INSPECAO = `(() => {
  * `largurasExtras` repete a varredura em outras larguras de viewport: é o
  * que pega rolagem horizontal em celular, que só aparece no layout estreito.
  */
+/**
+ * Junta a base e o prefixo sem barra duplicada no meio.
+ * 'https://exemplo.com/transparenciapolicita/' + '/' -> 'https://exemplo.com/transparenciapolicita/'
+ */
+export function montarUrl(base, prefixo = '/') {
+  const semBarra = base.replace(/\/+$/, '');
+  const cauda = prefixo.startsWith('/') ? prefixo : `/${prefixo}`;
+  return `${semBarra}${cauda}`;
+}
+
 export async function navegarComChrome({
   base,
   rotas,
@@ -364,7 +374,7 @@ export async function navegarComChrome({
       erros.length = 0;
       // ?cb= força documento novo a cada rota: sem isso o navegador reaproveita
       // a mesma página e o cache de módulos ES mascara erro de import.
-      await visitar(`${base}${prefixo}?cb=${i}#${rota}`);
+      await visitar(`${montarUrl(base, prefixo)}?cb=${i}#${rota}`);
 
       const { estado, erro } = await inspecionar();
       const errosDaRota = erro ? [erro] : [...erros];
@@ -381,7 +391,9 @@ export async function navegarComChrome({
       );
       for (const rota of rotasEstreitas) {
         erros.length = 0;
-        await visitar(`${base}${prefixo}?cb=${estreita}-${rotasEstreitas.indexOf(rota)}#${rota}`);
+        await visitar(
+          `${montarUrl(base, prefixo)}?cb=${estreita}-${rotasEstreitas.indexOf(rota)}#${rota}`,
+        );
         const medida = await inspecionar();
         registros.push({
           rota: `${rota} @${estreita}px`,

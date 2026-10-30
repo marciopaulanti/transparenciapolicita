@@ -87,16 +87,44 @@ def resolver(caminho_url: str) -> Path | None:
 
 
 def cabecalhos_arquivo(caminho: Path) -> dict:
-    """Cabeçalhos de resposta para um arquivo estático."""
-    # O HTML é a casca do aplicativo: nunca em cache velho, senão a pessoa
-    # recebe um index que aponta para um bundle que mudou. O resto pode ser
-    # guardado por cinco minutos — bem mais que o tempo de uma sessão.
-    cache = 'no-cache' if caminho.suffix == '.html' else 'public, max-age=300'
+    """Cabeçalhos de resposta para um arquivo estático.
+
+    O aplicativo não tem etapa de build: não existe hash no nome do
+    arquivo, então o nome é sempre o mesmo e o navegador não tem como
+    saber que o conteúdo mudou.
+
+    Sem hash no nome, `max-age` seria mentira — o navegador guardaria o
+    arquivo por minutos e continuaria servindo a versão antiga depois de
+    um deploy, sem nem perguntar ao servidor. `no-store` é a resposta
+    honesta para módulos ES e folhas de estilo: o navegador não guarda
+    nada, e cada visita traz o código que está no servidor agora.
+
+    O HTML é a exceção: ele é pequeno e o servidor responde 304 quando o
+    conteúdo não mudou, então `no-cache` (revalidar sempre) continua
+    barato e correto.
+    """
+    if caminho.suffix == '.html':
+        cache = 'no-cache'
+    else:
+        cache = 'no-store'
     return {
         'Content-Type': _tipo(caminho),
         'Cache-Control': cache,
         'Last-Modified': caminho.stat().st_mtime,
     }
+
+
+def etag_de(conteudo: bytes) -> str:
+    """Identificador de versão de um arquivo, derivado do conteúdo.
+
+    Mais forte que a data de modificação: dois deploys no mesmo segundo não
+    colidem, e o que importa é o conteúdo — exatamente o que vai pela
+    rede, já com o prefixo de publicação resolvido no index.
+    """
+    import hashlib
+
+    resumo = hashlib.sha256(conteudo).hexdigest()[:16]
+    return f'"{resumo}"'
 
 
 def ler_index() -> bytes:

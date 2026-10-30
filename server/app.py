@@ -37,16 +37,51 @@ class Manipulador(BaseHTTPRequestHandler):
     def _enviar_arquivo(self, caminho: Path) -> None:
         # O index recebe o placeholder da base de publicação resolvido: o
         # front-end descobre assim onde está a API.
-        dados = static.ler_index() if caminho.name == 'index.html' else caminho.read_bytes()
-        self.send_response(200)
+        if caminho.name == 'index.html':
+            dados = static.ler_index()
+        else:
+            dados = caminho.read_bytes()
+
         cabecalhos = static.cabecalhos_arquivo(caminho)
+        etag = static.etag_de(dados)
+
+        # Requisição condicional: se o navegador já tem esta versão, a
+        # resposta é 304 e nenhum byte de conteúdo volta pela rede.
+        if self._mesma_versao(caminho, etag):
+            self.send_response(304)
+            self.send_header('ETag', etag)
+            self.send_header('Cache-Control', cabecalhos['Cache-Control'])
+            self.send_header('Last-Modified', cabecalhos['Last-Modified'])
+            self.end_headers()
+            return
+
+        self.send_response(200)
         for nome, valor in cabecalhos.items():
             self.send_header(nome, str(valor))
+        self.send_header('ETag', etag)
         for nome, valor in config.CABECALHOS_SEGURANCA.items():
             self.send_header(nome, valor)
         self.end_headers()
         if self.command != 'HEAD':
             self.wfile.write(dados)
+
+    def _mesma_versao(self, caminho: Path, etag: str) -> bool:
+        """Diz se o cliente já tem esta versão do arquivo."""
+        if_none_match = self.headers.get('If-None-Match')
+        if if_none_match:
+            candidatos = [p.strip() for p in if_none_match.split(',')]
+            return etag in candidatos or '*' in candidatos
+
+        if_modified_since = self.headers.get('If-Modified-Since')
+        if if_modified_since:
+            from email.utils import parsedate_to_datetime
+
+            try:
+                desde = parsedate_to_datetime(if_modified_since)
+                return desde.timestamp() >= int(caminho.stat().st_mtime)
+            except (TypeError, ValueError):
+                return False
+        return False
 
     def _erro(self, mensagem: str, detalhe: str | None = None, status: int = 400) -> None:
         """Erro em JSON. Mesma convenção da API: mensagem, detalhe, status."""

@@ -1,0 +1,31 @@
+# Contexto de build enxuto. Só o que a imagem precisa.
+
+.git
+.github
+.playwright-mcp
+replica/screens
+node_modules
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+
+# O banco local não vai para dentro da imagem: na VPS ele vive num volume.
+data/
+db/data/
+
+# Cache do gerador de mapa.
+app/tools/.cache/
+
+# Segredos.
+.env
+.env.*
+!.env.example
+
+# Documentação de desenvolvimento (a imagem não precisa).
+README.md
+Makefile
+deploy/
+.gitignore
+.editorconfig
