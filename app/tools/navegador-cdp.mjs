@@ -72,21 +72,32 @@ async function responder(url, tentativas = 40) {
 
 /**
  * Devolve uma base URL com servidor no ar. Se já houver algo respondendo na
- * base pedida, reaproveita; senão sobe o serve.py do próprio projeto numa
+ * base pedida, reaproveita; senão sobe o servidor do próprio projeto numa
  * porta livre.
+ *
+ * `comApi = true` sobe o servidor de verdade (estáticos + API JSON), que é a
+ * topologia de produção. Sem esse modo, o smoke levanta o servidor estático
+ * puro e a chamada /api/bootstrap responde 404 — o que faria toda validação
+ * de API parecer quebrada.
  */
-export async function subirServidor(base) {
+export async function subirServidor(base, { comApi = false, basePath = '/' } = {}) {
   if (await responder(base, 3)) return { base, encerrar: () => {} };
 
   const porta = await portaLivre();
-  const proc = spawn('python3', [join(RAIZ, 'app', 'tools', 'serve.py'), String(porta)], {
-    stdio: ['ignore', 'pipe', 'pipe'],
-  });
+  const proc = comApi
+    ? spawn('python3', ['-m', 'server.app'], {
+        cwd: RAIZ,
+        env: { ...process.env, TP_PORT: String(porta), TP_BASE_PATH: basePath },
+        stdio: ['ignore', 'pipe', 'pipe'],
+      })
+    : spawn('python3', [join(RAIZ, 'app', 'tools', 'serve.py'), String(porta)], {
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
   const nova = `http://127.0.0.1:${porta}`;
   const ok = await responder(nova);
   if (!ok) {
     proc.kill();
-    throw new Error('não foi possível subir o servidor estático');
+    throw new Error('não foi possível subir o servidor');
   }
   return {
     base: nova,
@@ -207,6 +218,7 @@ const EXPRESSAO_INSPECAO = `(() => {
 export async function navegarComChrome({
   base,
   rotas,
+  prefixo = '/',
   largura = 1280,
   altura = 900,
   largurasExtras = [],
@@ -352,7 +364,7 @@ export async function navegarComChrome({
       erros.length = 0;
       // ?cb= força documento novo a cada rota: sem isso o navegador reaproveita
       // a mesma página e o cache de módulos ES mascara erro de import.
-      await visitar(`${base}/?cb=${i}#${rota}`);
+      await visitar(`${base}${prefixo}?cb=${i}#${rota}`);
 
       const { estado, erro } = await inspecionar();
       const errosDaRota = erro ? [erro] : [...erros];
@@ -369,7 +381,7 @@ export async function navegarComChrome({
       );
       for (const rota of rotasEstreitas) {
         erros.length = 0;
-        await visitar(`${base}/?cb=${estreita}-${rotasEstreitas.indexOf(rota)}#${rota}`);
+        await visitar(`${base}${prefixo}?cb=${estreita}-${rotasEstreitas.indexOf(rota)}#${rota}`);
         const medida = await inspecionar();
         registros.push({
           rota: `${rota} @${estreita}px`,

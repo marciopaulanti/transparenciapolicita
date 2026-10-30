@@ -8,7 +8,7 @@
    · todo bloco de dado carrega a fonte e a data da última atualização.
    ========================================================================== */
 
-import { CIDADES, normalizar } from './data/fixtures.js';
+import { CIDADES, normalizar } from './data/dados.js';
 
 export function escapeHtml(value) {
   return String(value ?? '')

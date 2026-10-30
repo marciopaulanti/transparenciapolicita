@@ -6,7 +6,7 @@
    filtro por cargo, estado e partido, navegação por letra e lista paginada.
    ========================================================================== */
 
-import { PESSOAS, PROJETO } from '../data/fixtures.js';
+import { PESSOAS, PROJETO } from '../data/dados.js';
 import { escapeHtml, personRow, sourceNote } from '../components.js';
 
 export function directoryView({ query }) {

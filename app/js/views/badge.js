@@ -9,7 +9,7 @@
    3. todo bloco traz a fonte oficial e a data da última atualização.
    ========================================================================== */
 
-import { historicoDe, nomeDoPartido, PESSOAS, PROJETO } from '../data/fixtures.js';
+import { historicoDe, nomeDoPartido, PESSOAS, PROJETO } from '../data/dados.js';
 import {
   escapeHtml,
   metricCard,

@@ -5,7 +5,7 @@
    A cor do partido identifica a cadeira; ela não avalia a pessoa.
    ========================================================================== */
 
-import { CIDADES, ESTADOS, normalizar, PESSOAS, PROJETO, REGIOES } from '../data/fixtures.js';
+import { CIDADES, ESTADOS, normalizar, PESSOAS, PROJETO, REGIOES } from '../data/dados.js';
 import { escapeHtml, personRow, sourceNote } from '../components.js';
 
 export function ufView({ params }) {

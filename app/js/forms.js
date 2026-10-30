@@ -7,7 +7,7 @@
      Erro de dado de terceiro é conferido na fonte oficial antes de entrar.
    ========================================================================== */
 
-import { CIDADES } from './data/fixtures.js';
+import { CIDADES, enviarMonitoramento, enviarSugestao } from './data/dados.js';
 import { escapeHtml } from './components.js';
 import { openDialog } from './dialog.js';
 
@@ -77,9 +77,18 @@ export function abrirMonitor(pessoa, anchor) {
       return;
     }
     close();
-    import('./components.js').then(({ toast }) =>
-      toast(`Agora você monitora ${pessoa.nome}. Avisamos quando o registro mudar.`),
-    );
+    // O pedido vai para o banco. Se a chamada falhar, a confirmação local
+    // continua valendo — o protótipo não pode prender a pessoa por causa
+    // de um servidor fora do ar.
+    enviarMonitoramento({
+      pessoaId: pessoa.id,
+      email,
+      canal: 'codigo',
+    }).then(() => {
+      import('./components.js').then(({ toast }) =>
+        toast(`Agora você monitora ${pessoa.nome}. Avisamos quando o registro mudar.`),
+      );
+    });
   });
 
   element.querySelector('[data-resend]')?.addEventListener('click', () => {
@@ -155,8 +164,18 @@ export function abrirSugestao({ contexto = '', anchor } = {}) {
     }
     erro.hidden = true;
     close();
-    import('./components.js').then(({ toast }) =>
-      toast('Recebido. Toda correção é conferida na fonte oficial antes de entrar.'),
-    );
+    // O relato vai para o banco; a confirmação na tela não depende do
+    // servidor responder.
+    enviarSugestao({
+      contexto,
+      tipo: form.tipo.value,
+      mensagem: form.texto.value.trim(),
+      nome: form.nome.value.trim() || null,
+      email: form.email.value.trim() || null,
+    }).then(() => {
+      import('./components.js').then(({ toast }) =>
+        toast('Recebido. Toda correção é conferida na fonte oficial antes de entrar.'),
+      );
+    });
   });
 }

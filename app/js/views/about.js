@@ -5,7 +5,7 @@
    o que este site se recusa a fazer. Sem ela, o resto é só uma planilha.
    ========================================================================== */
 
-import { PROJETO } from '../data/fixtures.js';
+import { PROJETO } from '../data/dados.js';
 
 export function aboutView() {
   const html = `

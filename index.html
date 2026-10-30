@@ -10,8 +10,13 @@
     />
     <title>Transparência Política — quem me representa e o que foi feito</title>
 
+    <!-- Onde a API está. O servidor substitui este placeholder na hora de
+         servir, para que o mesmo código funcione na raiz do domínio e em um
+         subdiretório, sem etapa de build. -->
+    <meta name="tp-base" content="{{BASE}}" />
+
     <link rel="icon" href="app/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="replica/design/tokens.css" />
+    <link rel="stylesheet" href="app/css/tokens.css" />
     <link rel="stylesheet" href="app/css/base.css" />
     <link rel="stylesheet" href="app/css/components.css" />
     <link rel="stylesheet" href="app/css/screens.css" />

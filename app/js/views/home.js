@@ -5,7 +5,7 @@
    A camada temática mora na URL (?assunto=), então o recorte é compartilhável.
    ========================================================================== */
 
-import { CAMADAS, ESTADOS, PROJETO, valoresDaCamada } from '../data/fixtures.js';
+import { CAMADAS, ESTADOS, PROJETO, valoresDaCamada } from '../data/dados.js';
 import { MAP_STATES, MAP_VIEWBOX } from '../data/br-map.js';
 import { escapeHtml, sourceNote, montarComboboxCidade } from '../components.js';
 

@@ -21,7 +21,15 @@ import { fileURLToPath } from 'node:url';
 import { navegarComChrome, subirServidor, temChrome } from './navegador-cdp.mjs';
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const BASE = process.argv[2] || 'http://localhost:8765';
+
+// `--subpath` confere a mesma coisa com o app publicado em um subdiretório
+// (/transparencia/ em vez de /). A publicação em subpasta é um caminho
+// diferente de fato: os endereços dos arquivos mudam de lugar, e é aí que
+// um link relativo quebrado apareceria.
+const ARGUMENTOS = process.argv.slice(2);
+const EM_SUBPATH = ARGUMENTOS.includes('--subpath');
+const BASE = ARGUMENTOS.find((arg) => arg.startsWith('http')) || 'http://localhost:8765';
+const PREFIXO = EM_SUBPATH ? '/transparencia/' : '/';
 
 const ROTAS = [
   '/',
@@ -116,6 +124,33 @@ function semLiterais(fonte) {
     .replace(/"(?:\\.|[^"\\])*"/g, '""');
 }
 
+/**
+ * Globais do JavaScript, em caixa alta. Não são do projeto — são da
+ * linguagem — mas a varredura de identificadores não sabe a diferença.
+ */
+const GLOBAIS_NATIVOS = new Set([
+  'JSON',
+  'URL',
+  'URLSearchParams',
+  'Math',
+  'Date',
+  'Number',
+  'String',
+  'Object',
+  'Array',
+  'Promise',
+  'Error',
+  'TypeError',
+  'SyntaxError',
+  'RangeError',
+  'Infinity',
+  'NaN',
+  'undefined',
+  'null',
+  'true',
+  'false',
+]);
+
 function checarEstatico() {
   const problemas = [];
   const declarados = nomesDeclarados();
@@ -146,7 +181,7 @@ function checarEstatico() {
     const codigo = semLiterais(fonte.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, ''));
     for (const m of codigo.matchAll(/\b([A-Z][A-Z0-9_]{2,})\b/g)) {
       const nome = m[1];
-      if (!declarados.has(nome)) {
+      if (!declarados.has(nome) && !GLOBAIS_NATIVOS.has(nome)) {
         problemas.push(`identificador não definido "${nome}" em ${caminho.replace(RAIZ + '/', '')}`);
       }
     }
@@ -224,6 +259,9 @@ async function checarComPlaywright() {
     return null; // Playwright não está disponível neste ambiente
   }
 
+  // Com API: é a topologia de produção (estáticos + JSON na mesma porta).
+  const servidor = await subirServidor(BASE, { comApi: true, basePath: PREFIXO });
+
   const browser = await chromium.launch();
   const pagina = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 
@@ -241,7 +279,9 @@ async function checarComPlaywright() {
   const registros = [];
   for (const rota of ROTAS) {
     erros.length = 0;
-    await pagina.goto(`${BASE}/?cb=${registros.length}#${rota}`, { waitUntil: 'load' });
+    await pagina.goto(`${servidor.base}${PREFIXO}?cb=${registros.length}#${rota}`, {
+      waitUntil: 'load',
+    });
     await pagina.waitForTimeout(700);
 
     const estado = await pagina.evaluate(() => {
@@ -284,6 +324,7 @@ async function checarComPlaywright() {
   }
 
   await browser.close();
+  servidor.encerrar();
   return { modo: 'playwright', registros };
 }
 
@@ -291,10 +332,12 @@ async function checarComPlaywright() {
 
 async function checarComChrome() {
   if (!temChrome()) return null;
-  const servidor = await subirServidor(BASE);
+  // Com API: é a topologia de produção (estáticos + JSON na mesma porta).
+  const servidor = await subirServidor(BASE, { comApi: true, basePath: PREFIXO });
   try {
     const resultado = await navegarComChrome({
       base: servidor.base,
+      prefixo: PREFIXO,
       rotas: ROTAS,
       largurasExtras: [320, 390, 768],
       rotasEstreitas: ROTAS_PRINCIPAIS,

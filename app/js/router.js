@@ -93,7 +93,7 @@ export function navigate(to, { replace = false } = {}) {
   }
 }
 
-async function render() {
+async function render({ silencioso = false } = {}) {
   const token = ++navToken;
 
   // Um hash que não é uma rota do app (por exemplo "#view", vindo do link
@@ -170,11 +170,15 @@ async function render() {
   if (token !== navToken) return; // outra navegação começou: descarta esta
 
   outlet.innerHTML = view.html;
-  outlet.classList.remove('is-entering');
-  // reflow para reiniciar a animação de entrada
-  void outlet.offsetWidth;
-  outlet.classList.add('is-entering');
-
+  // Um redesenhe silencioso (dados que chegaram depois) não repete a
+  // animação de entrada: a tela não "pisca" por causa de uma atualização de
+  // fundo. Só uma troca de tela de verdade anima.
+  if (!silencioso) {
+    outlet.classList.remove('is-entering');
+    // reflow para reiniciar a animação de entrada
+    void outlet.offsetWidth;
+    outlet.classList.add('is-entering');
+  }
   currentView = view;
   view.mount?.(outlet);
 
@@ -190,7 +194,10 @@ async function render() {
     ? outlet.querySelector(`[data-focus-key="${CSS.escape(focoAntes)}"]`)
     : null;
   const temFragmento = Boolean(fragment);
-  if (devolvido) {
+  if (silencioso) {
+    // Redesenhe de fundo: nem mexe no foco nem na rolagem. A pessoa está
+    // lendo; não é hora de puxar o foco para o título.
+  } else if (devolvido) {
     devolvido.focus({ preventScroll: true });
   } else if (!changed && painel) {
     painel.setAttribute('tabindex', '-1');
@@ -203,7 +210,9 @@ async function render() {
 
   // rolagem: tela nova começa no topo; voltar pelo histórico devolve o ponto exato;
   // mudar só o filtro (mesma tela) preserva onde a pessoa estava lendo.
-  if (pendingRestore) {
+  if (silencioso) {
+    // mantém a pessoa exatamente onde ela estava
+  } else if (pendingRestore) {
     pendingRestore = false;
     // 'instant' vence o scroll-behavior: smooth do html: voltar pelo
     // histórico reposiciona sem animação, como no iOS.
@@ -243,4 +252,15 @@ export function startRouter({ outlet: outletEl, announcer: announcerEl }) {
   // voltar/avançar no histórico: devolve a rolagem salva daquela tela
   window.addEventListener('popstate', () => { pendingRestore = true; });
   render();
+}
+
+/**
+ * Redesenha a tela atual.
+ *
+ * Usado quando os dados definitivos chegam depois do primeiro desenho: a
+ * pessoa continua na mesma tela, com o conteúdo atualizado, sem animação e
+ * sem que o foco pule para o título.
+ */
+export function renderizar({ silencioso = false } = {}) {
+  return render({ silencioso });
 }

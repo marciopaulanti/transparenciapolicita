@@ -88,11 +88,46 @@ export const CAMADAS = [
 
 /* --------------------------------------------------------------- estados */
 
+/**
+ * Os 27 estados e o Distrito Federal, com o nome oficial e o código de região
+ * do IBGE (1 Norte, 2 Nordeste, 3 Centro-Oeste, 4 Sudeste, 5 Sul).
+ *
+ * É a lista real do país — nome e região não são invenção. Todo o resto do
+ * registro, sim.
+ */
+export const ESTADOS_BASE = [
+  { sigla: 'AC', nome: 'Acre', regiao: 1 },
+  { sigla: 'AL', nome: 'Alagoas', regiao: 2 },
+  { sigla: 'AM', nome: 'Amazonas', regiao: 1 },
+  { sigla: 'AP', nome: 'Amapá', regiao: 1 },
+  { sigla: 'BA', nome: 'Bahia', regiao: 2 },
+  { sigla: 'CE', nome: 'Ceará', regiao: 2 },
+  { sigla: 'DF', nome: 'Distrito Federal', regiao: 3 },
+  { sigla: 'ES', nome: 'Espírito Santo', regiao: 4 },
+  { sigla: 'GO', nome: 'Goiás', regiao: 3 },
+  { sigla: 'MA', nome: 'Maranhão', regiao: 2 },
+  { sigla: 'MG', nome: 'Minas Gerais', regiao: 4 },
+  { sigla: 'MS', nome: 'Mato Grosso do Sul', regiao: 3 },
+  { sigla: 'MT', nome: 'Mato Grosso', regiao: 3 },
+  { sigla: 'PA', nome: 'Pará', regiao: 1 },
+  { sigla: 'PB', nome: 'Paraíba', regiao: 2 },
+  { sigla: 'PE', nome: 'Pernambuco', regiao: 2 },
+  { sigla: 'PI', nome: 'Piauí', regiao: 2 },
+  { sigla: 'PR', nome: 'Paraná', regiao: 5 },
+  { sigla: 'RJ', nome: 'Rio de Janeiro', regiao: 4 },
+  { sigla: 'RN', nome: 'Rio Grande do Norte', regiao: 2 },
+  { sigla: 'RO', nome: 'Rondônia', regiao: 1 },
+  { sigla: 'RR', nome: 'Roraima', regiao: 1 },
+  { sigla: 'RS', nome: 'Rio Grande do Sul', regiao: 5 },
+  { sigla: 'SC', nome: 'Santa Catarina', regiao: 5 },
+  { sigla: 'SE', nome: 'Sergipe', regiao: 2 },
+  { sigla: 'SP', nome: 'São Paulo', regiao: 4 },
+  { sigla: 'TO', nome: 'Tocantins', regiao: 1 },
+];
+
 /** Estados que o protótipo abre com detalhe. Others return to the generic state. */
-export const ESTADOS = {
+const ESTADOS_DETALHADOS = {
   SP: {
-    nome: 'São Paulo',
-    regiao: 4,
     lema: 'Maior estado em número de municípios: 645 cidades.',
     bancada: [
       { nome: 'Cléo Antunes', cargo: 'Deputada federal', partido: 'PDP', titular: true },
@@ -104,8 +139,6 @@ export const ESTADOS = {
     ],
   },
   RJ: {
-    nome: 'Rio de Janeiro',
-    regiao: 4,
     lema: 'Capital com obras em revisão no orçamento municipal.',
     bancada: [
       { nome: 'Ruan Ferraz', cargo: 'Deputado federal', partido: 'ADB', titular: true },
@@ -115,8 +148,6 @@ export const ESTADOS = {
     ],
   },
   PE: {
-    nome: 'Pernambuco',
-    regiao: 2,
     lema: 'Recife, Olinda e Caruaru concentram a maior parte dos registros.',
     bancada: [
       { nome: 'Marina Caldeira', cargo: 'Prefeita', partido: 'CPL', titular: true },
@@ -125,8 +156,6 @@ export const ESTADOS = {
     ],
   },
   BA: {
-    nome: 'Bahia',
-    regiao: 2,
     lema: '49 municipios com dados abertos publicados.',
     bancada: [
       { nome: 'Celso Bragança', cargo: 'Prefeito', partido: 'ADB', titular: true },
@@ -135,8 +164,6 @@ export const ESTADOS = {
     ],
   },
   MG: {
-    nome: 'Minas Gerais',
-    regiao: 4,
     lema: '853 municipios; os dados por cidade são esparsos.',
     bancada: [
       { nome: 'Nara Vasconcelos', cargo: 'Deputada federal', partido: 'CPL', titular: true },
@@ -145,8 +172,6 @@ export const ESTADOS = {
     ],
   },
   DF: {
-    nome: 'Distrito Federal',
-    regiao: 3,
     lema: 'Esfera federal: senadores, deputados federais e deputado distrital.',
     bancada: [
       { nome: 'Helena Braga', cargo: 'Senadora', partido: 'CDV', titular: true },
@@ -155,6 +180,111 @@ export const ESTADOS = {
     ],
   },
 };
+
+/**
+ * Bancada de demonstração para os estados que não têm uma bancada escrita à
+ * mão. A regra é a mesma em toda parte: nome inventado, partido inventado,
+ * cargo real — e nada que julgue a pessoa.
+ *
+ * Determinística de propósito: o mesmo estado gera sempre a mesma bancada,
+ * de um carregamento para o outro.
+ */
+const NOMES_PROPRIOS = [
+  ['Ana', 'f'], ['Beatriz', 'f'], ['Camila', 'f'], ['Daniela', 'f'],
+  ['Eduarda', 'f'], ['Fernanda', 'f'], ['Gabriela', 'f'], ['Helena', 'f'],
+  ['Isabela', 'f'], ['Júlia', 'f'], ['Larissa', 'f'], ['Natália', 'f'],
+  ['Olívia', 'f'], ['Patrícia', 'f'], ['Renata', 'f'], ['Sofia', 'f'],
+  ['Tatiane', 'f'], ['Valentina', 'f'], ['Bruno', 'm'], ['Caio', 'm'],
+  ['Diego', 'm'], ['Eduardo', 'm'], ['Felipe', 'm'], ['Gustavo', 'm'],
+  ['Henrique', 'm'], ['Igor', 'm'], ['Leonardo', 'm'], ['Marcelo', 'm'],
+  ['Nicolas', 'm'], ['Paulo', 'm'], ['Rafael', 'm'], ['Sérgio', 'm'],
+  ['Thiago', 'm'], ['Vinícius', 'm'], ['Wallace', 'm'],
+];
+
+const SOBRENOMES = [
+  'Almeida', 'Andrade', 'Azevedo', 'Barbosa', 'Barros', 'Batista',
+  'Camargo', 'Cardoso', 'Castro', 'Duarte', 'Esteves', 'Farias',
+  'Ferreira', 'Freitas', 'Gouveia', 'Guimarães', 'Lacerda', 'Lima',
+  'Machado', 'Magalhães', 'Martins', 'Melo', 'Moreira', 'Nascimento',
+  'Nunes', 'Peixoto', 'Pinheiro', 'Queiroz', 'Ramos', 'Rezende',
+  'Ribeiro', 'Rocha', 'Sampaio', 'Santana', 'Siqueira', 'Torres',
+  'Valente', 'Vieira',
+];
+
+const CARGOS_BANCADA = [
+  'deputado_federal',
+  'deputado_estadual',
+  'senador',
+  'prefeito',
+  'vereador',
+];
+
+/** Rótulo do cargo por gênero: [masculino, feminino]. */
+const ROTULOS_CARGO = {
+  deputado_federal: ['Deputado federal', 'Deputada federal'],
+  deputado_estadual: ['Deputado estadual', 'Deputada estadual'],
+  senador: ['Senador', 'Senadora'],
+  prefeito: ['Prefeito', 'Prefeita'],
+  vereador: ['Vereador', 'Vereadora'],
+};
+
+function gerarBancada(sigla) {
+  const total = 4 + Math.floor(hash01(sigla) * 3); // de 4 a 6 cadeiras
+  const bancada = [];
+  const usados = new Set();
+
+  for (let indice = 0; indice < total; indice += 1) {
+    const proprio =
+      NOMES_PROPRIOS[Math.floor(hash01(`${sigla}:${indice}:nome`) * NOMES_PROPRIOS.length)];
+
+    let sobrenome =
+      SOBRENOMES[Math.floor(hash01(`${sigla}:${indice}:sobre`) * SOBRENOMES.length)];
+    // Duas cadeiras do mesmo estado não podem ter o mesmo nome.
+    let guarda = 0;
+    while (usados.has(`${proprio[0]} ${sobrenome}`) && guarda < SOBRENOMES.length) {
+      sobrenome = SOBRENOMES[(SOBRENOMES.indexOf(sobrenome) + 1) % SOBRENOMES.length];
+      guarda += 1;
+    }
+    const nome = `${proprio[0]} ${sobrenome}`;
+    usados.add(nome);
+
+    const cargo =
+      CARGOS_BANCADA[Math.floor(hash01(`${sigla}:${indice}:cargo`) * CARGOS_BANCADA.length)];
+    const partido =
+      PARTIDOS[Math.floor(hash01(`${sigla}:${indice}:partido`) * PARTIDOS.length)].sigla;
+
+    bancada.push({
+      nome,
+      cargo: ROTULOS_CARGO[cargo][proprio[1] === 'f' ? 1 : 0],
+      partido,
+      titular: hash01(`${sigla}:${indice}:titular`) > 0.2,
+    });
+  }
+
+  return bancada;
+}
+
+/**
+ * Todos os estados do mapa, cada um com nome, região e bancada. `ESTADOS_BASE`
+ * é a fonte do nome e da região; o texto e a bancada escrita à mão têm
+ * precedência quando existem.
+ */
+export const ESTADOS = Object.fromEntries(
+  ESTADOS_BASE.map((base) => {
+    const detalhado = ESTADOS_DETALHADOS[base.sigla];
+    return [
+      base.sigla,
+      {
+        nome: base.nome,
+        regiao: base.regiao,
+        lema:
+          detalhado?.lema ??
+          'Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.',
+        bancada: detalhado?.bancada ?? gerarBancada(base.sigla),
+      },
+    ];
+  }),
+);
 
 /* -------------------------------------------------------------- pessoas */
 

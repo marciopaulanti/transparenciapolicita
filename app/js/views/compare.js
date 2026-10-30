@@ -6,7 +6,7 @@
    cor de bom/ruim. Dado que uma das pessoas não tem é "—", do lado dela.
    ========================================================================== */
 
-import { PESSOAS, PROJETO } from '../data/fixtures.js';
+import { PESSOAS, PROJETO } from '../data/dados.js';
 import { dash, escapeHtml, moeda, numero, percentual, sourceNote } from '../components.js';
 import { openDialog } from '../dialog.js';
 

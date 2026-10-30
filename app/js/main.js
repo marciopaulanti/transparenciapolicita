@@ -3,12 +3,12 @@
    ========================================================================== */
 
 import { attachPress } from './motion.js';
-import { defineRoutes, onBeforeNavigate, startRouter } from './router.js';
+import { defineRoutes, onBeforeNavigate, renderizar, startRouter } from './router.js';
 import { closeDialog, openDialog } from './dialog.js';
 import { closeSheet } from './sheet.js';
 import { abrirSugestao } from './forms.js';
 import { escapeHtml } from './components.js';
-import { CIDADES, normalizar, PESSOAS } from './data/fixtures.js';
+import { CIDADES, carregarDaApi, normalizar, PESSOAS } from './data/dados.js';
 import { MAP_STATES } from './data/br-map.js';
 import { homeView } from './views/home.js';
 import { meView } from './views/me.js';
@@ -37,6 +37,21 @@ startRouter({
   announcer: document.getElementById('route-announcer'),
 });
 
+/* ------------------------------------------------------------- dados */
+
+// Os registros definitivos estão no banco, não no arquivo embutido. A
+// primeira tela já sai desenhada com o dataset de reserva — que é o mesmo,
+// byte a byte (confere-paridade.mjs) — e, se a API trouxer algo
+// diferente, a tela é redesenhada em silêncio: sem animação, sem que o
+// foco pule para o título, sem tirar a pessoa do ponto onde ela está
+// lendo.
+//
+// Se a API não responder, nada acontece: o dataset de reserva segue valendo.
+carregarDaApi().then((situacao) => {
+  if (situacao.origem === 'api' && situacao.mudou) {
+    renderizar({ silencioso: true });
+  }
+});
 /* ------------------------------------------------ camadas sobre a página */
 
 // Trocar de tela dispensa o que estiver por cima: uma sheet ou um modal

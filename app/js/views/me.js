@@ -5,7 +5,7 @@
    No desktop o painel não tem scrim: o fluxo de leitura não é interrompido.
    ========================================================================== */
 
-import { CIDADES, ESTADOS, normalizar, PROJETO, porMunicipio, porUf } from '../data/fixtures.js';
+import { CIDADES, ESTADOS, normalizar, PROJETO, porMunicipio, porUf } from '../data/dados.js';
 import { MAP_STATES } from '../data/br-map.js';
 import { escapeHtml, personRow, sourceNote, montarComboboxCidade } from '../components.js';
 import { openSheet } from '../sheet.js';

@@ -1,0 +1,3154 @@
+{
+  "geradoEm": "2026-10-30T21:41:27.889Z",
+  "aviso": "DATOS FICTÍCIOS. Pessoas, partidos, votos, orçamentos, emendas e cargos foram inventados para demonstração. A geometria dos estados é real; os números não são.",
+  "projeto": {
+    "nome": "Transparência Política",
+    "tagline": "dados oficiais, sem nota e sem ranking",
+    "fontePadrao": "Dados fictícios de demonstração",
+    "atualizadoEm": "30/10/2026"
+  },
+  "regioes": {
+    "1": "Norte",
+    "2": "Nordeste",
+    "3": "Centro-Oeste",
+    "4": "Sudeste",
+    "5": "Sul"
+  },
+  "partidos": [
+    {
+      "sigla": "ADB",
+      "nome": "Aliança dos Bairros"
+    },
+    {
+      "sigla": "CDV",
+      "nome": "Coalição do Vale"
+    },
+    {
+      "sigla": "CPL",
+      "nome": "Coletivo Popular"
+    },
+    {
+      "sigla": "FEX",
+      "nome": "Fórum Executivo"
+    },
+    {
+      "sigla": "MDV",
+      "nome": "Movimento Democrático"
+    },
+    {
+      "sigla": "PDP",
+      "nome": "Partido do Povo"
+    },
+    {
+      "sigla": "RDV",
+      "nome": "Rede de Vizinhança"
+    },
+    {
+      "sigla": "UDP",
+      "nome": "União das Praias"
+    }
+  ],
+  "camadas": [
+    {
+      "id": "contas",
+      "nome": "Contas de campanha",
+      "unidade": "R$ em milhares",
+      "descricao": "Total declarado pelas campanhas no estado na última eleição."
+    },
+    {
+      "id": "escolas",
+      "nome": "Escolas",
+      "unidade": "escolas por 10 mil habitantes",
+      "descricao": "Rede de ensino basic municipal e estadual."
+    },
+    {
+      "id": "obras",
+      "nome": "Obras",
+      "unidade": "obras por 100 mil habitantes",
+      "descricao": "Contratos de obra pública em andamento."
+    },
+    {
+      "id": "dinheiro",
+      "nome": "Dinheiro público",
+      "unidade": "R$ por habitante",
+      "descricao": "Arrecadação por habitante no último ano fechado."
+    },
+    {
+      "id": "votacoes",
+      "nome": "Votações",
+      "unidade": "% de presença em votação",
+      "descricao": "Participação em sessões de votação nominal."
+    }
+  ],
+  "estados": {
+    "AC": {
+      "nome": "Acre",
+      "regiao": 1,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Paulo Melo",
+          "cargo": "Prefeito",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Renata Castro",
+          "cargo": "Vereadora",
+          "partido": "CPL",
+          "titular": true
+        },
+        {
+          "nome": "Isabela Torres",
+          "cargo": "Senadora",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Eduarda Barros",
+          "cargo": "Vereadora",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Marcelo Peixoto",
+          "cargo": "Vereador",
+          "partido": "CDV",
+          "titular": true
+        }
+      ]
+    },
+    "AL": {
+      "nome": "Alagoas",
+      "regiao": 2,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Júlia Farias",
+          "cargo": "Deputada estadual",
+          "partido": "RDV",
+          "titular": false
+        },
+        {
+          "nome": "Paulo Batista",
+          "cargo": "Prefeito",
+          "partido": "CDV",
+          "titular": false
+        },
+        {
+          "nome": "Leonardo Esteves",
+          "cargo": "Deputado federal",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Wallace Azevedo",
+          "cargo": "Prefeito",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Henrique Duarte",
+          "cargo": "Prefeito",
+          "partido": "PDP",
+          "titular": true
+        },
+        {
+          "nome": "Igor Melo",
+          "cargo": "Deputado estadual",
+          "partido": "CDV",
+          "titular": true
+        }
+      ]
+    },
+    "AM": {
+      "nome": "Amazonas",
+      "regiao": 1,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Eduardo Barros",
+          "cargo": "Vereador",
+          "partido": "RDV",
+          "titular": false
+        },
+        {
+          "nome": "Sérgio Melo",
+          "cargo": "Deputado federal",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Diego Torres",
+          "cargo": "Prefeito",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Thiago Farias",
+          "cargo": "Deputado federal",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Camila Castro",
+          "cargo": "Prefeita",
+          "partido": "UDP",
+          "titular": true
+        }
+      ]
+    },
+    "AP": {
+      "nome": "Amapá",
+      "regiao": 1,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Gabriela Moreira",
+          "cargo": "Deputada estadual",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Beatriz Ribeiro",
+          "cargo": "Prefeita",
+          "partido": "MDV",
+          "titular": false
+        },
+        {
+          "nome": "Olívia Ramos",
+          "cargo": "Vereadora",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Olívia Almeida",
+          "cargo": "Deputada federal",
+          "partido": "MDV",
+          "titular": false
+        },
+        {
+          "nome": "Daniela Azevedo",
+          "cargo": "Vereadora",
+          "partido": "FEX",
+          "titular": true
+        }
+      ]
+    },
+    "BA": {
+      "nome": "Bahia",
+      "regiao": 2,
+      "lema": "49 municipios com dados abertos publicados.",
+      "bancada": [
+        {
+          "nome": "Celso Bragança",
+          "cargo": "Prefeito",
+          "partido": "ADB",
+          "titular": true
+        },
+        {
+          "nome": "Luana Seixas",
+          "cargo": "Vereadora",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Otávio Peixoto",
+          "cargo": "Deputado federal",
+          "partido": "FEX",
+          "titular": true
+        }
+      ]
+    },
+    "CE": {
+      "nome": "Ceará",
+      "regiao": 2,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Helena Magalhães",
+          "cargo": "Deputada federal",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Sofia Farias",
+          "cargo": "Deputada federal",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Camila Pinheiro",
+          "cargo": "Senadora",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Vinícius Machado",
+          "cargo": "Vereador",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Eduarda Martins",
+          "cargo": "Vereadora",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Paulo Martins",
+          "cargo": "Prefeito",
+          "partido": "RDV",
+          "titular": true
+        }
+      ]
+    },
+    "DF": {
+      "nome": "Distrito Federal",
+      "regiao": 3,
+      "lema": "Esfera federal: senadores, deputados federais e deputado distrital.",
+      "bancada": [
+        {
+          "nome": "Helena Braga",
+          "cargo": "Senadora",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Marcelo Aguiar",
+          "cargo": "Deputado distrital",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Nara Vasconcelos",
+          "cargo": "Deputada federal",
+          "partido": "CPL",
+          "titular": false
+        }
+      ]
+    },
+    "ES": {
+      "nome": "Espírito Santo",
+      "regiao": 4,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Diego Valente",
+          "cargo": "Vereador",
+          "partido": "PDP",
+          "titular": true
+        },
+        {
+          "nome": "Isabela Peixoto",
+          "cargo": "Deputada federal",
+          "partido": "PDP",
+          "titular": true
+        },
+        {
+          "nome": "Isabela Queiroz",
+          "cargo": "Prefeita",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Camila Martins",
+          "cargo": "Prefeita",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Tatiane Freitas",
+          "cargo": "Vereadora",
+          "partido": "FEX",
+          "titular": false
+        }
+      ]
+    },
+    "GO": {
+      "nome": "Goiás",
+      "regiao": 3,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Eduardo Barros",
+          "cargo": "Vereador",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Igor Duarte",
+          "cargo": "Deputado federal",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Diego Vieira",
+          "cargo": "Vereador",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Fernanda Peixoto",
+          "cargo": "Vereadora",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Ana Castro",
+          "cargo": "Prefeita",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Sérgio Lacerda",
+          "cargo": "Vereador",
+          "partido": "RDV",
+          "titular": true
+        }
+      ]
+    },
+    "MA": {
+      "nome": "Maranhão",
+      "regiao": 2,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Gabriela Martins",
+          "cargo": "Deputada federal",
+          "partido": "CDV",
+          "titular": false
+        },
+        {
+          "nome": "Renata Ferreira",
+          "cargo": "Senadora",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Tatiane Camargo",
+          "cargo": "Vereadora",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Gabriela Torres",
+          "cargo": "Deputada federal",
+          "partido": "CDV",
+          "titular": false
+        },
+        {
+          "nome": "Thiago Barros",
+          "cargo": "Prefeito",
+          "partido": "RDV",
+          "titular": true
+        }
+      ]
+    },
+    "MG": {
+      "nome": "Minas Gerais",
+      "regiao": 4,
+      "lema": "853 municipios; os dados por cidade são esparsos.",
+      "bancada": [
+        {
+          "nome": "Nara Vasconcelos",
+          "cargo": "Deputada federal",
+          "partido": "CPL",
+          "titular": true
+        },
+        {
+          "nome": "Fábio Lemos",
+          "cargo": "Prefeito",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Débora Nunes",
+          "cargo": "Deputada estadual",
+          "partido": "CDV",
+          "titular": true
+        }
+      ]
+    },
+    "MS": {
+      "nome": "Mato Grosso do Sul",
+      "regiao": 3,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Eduarda Lima",
+          "cargo": "Prefeita",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Bruno Melo",
+          "cargo": "Senador",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Eduarda Peixoto",
+          "cargo": "Senadora",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Valentina Martins",
+          "cargo": "Senadora",
+          "partido": "PDP",
+          "titular": true
+        },
+        {
+          "nome": "Henrique Castro",
+          "cargo": "Deputado estadual",
+          "partido": "RDV",
+          "titular": true
+        }
+      ]
+    },
+    "MT": {
+      "nome": "Mato Grosso",
+      "regiao": 3,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Paulo Melo",
+          "cargo": "Deputado federal",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Rafael Rezende",
+          "cargo": "Deputado federal",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Isabela Pinheiro",
+          "cargo": "Senadora",
+          "partido": "MDV",
+          "titular": false
+        },
+        {
+          "nome": "Diego Queiroz",
+          "cargo": "Vereador",
+          "partido": "UDP",
+          "titular": true
+        }
+      ]
+    },
+    "PA": {
+      "nome": "Pará",
+      "regiao": 1,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Isabela Pinheiro",
+          "cargo": "Vereadora",
+          "partido": "CPL",
+          "titular": true
+        },
+        {
+          "nome": "Gabriela Duarte",
+          "cargo": "Deputada federal",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Larissa Vieira",
+          "cargo": "Deputada federal",
+          "partido": "CDV",
+          "titular": false
+        },
+        {
+          "nome": "Patrícia Rezende",
+          "cargo": "Deputada estadual",
+          "partido": "ADB",
+          "titular": true
+        }
+      ]
+    },
+    "PB": {
+      "nome": "Paraíba",
+      "regiao": 2,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Eduardo Melo",
+          "cargo": "Vereador",
+          "partido": "CPL",
+          "titular": true
+        },
+        {
+          "nome": "Júlia Nunes",
+          "cargo": "Vereadora",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Leonardo Santana",
+          "cargo": "Vereador",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Rafael Andrade",
+          "cargo": "Senador",
+          "partido": "FEX",
+          "titular": false
+        }
+      ]
+    },
+    "PE": {
+      "nome": "Pernambuco",
+      "regiao": 2,
+      "lema": "Recife, Olinda e Caruaru concentram a maior parte dos registros.",
+      "bancada": [
+        {
+          "nome": "Marina Caldeira",
+          "cargo": "Prefeita",
+          "partido": "CPL",
+          "titular": true
+        },
+        {
+          "nome": "Otávio Bezerra",
+          "cargo": "Vereador",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Celso Bragança",
+          "cargo": "Deputado estadual",
+          "partido": "ADB",
+          "titular": true
+        }
+      ]
+    },
+    "PI": {
+      "nome": "Piauí",
+      "regiao": 2,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Igor Barbosa",
+          "cargo": "Senador",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Rafael Queiroz",
+          "cargo": "Senador",
+          "partido": "UDP",
+          "titular": false
+        },
+        {
+          "nome": "Beatriz Moreira",
+          "cargo": "Prefeita",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Isabela Siqueira",
+          "cargo": "Deputada federal",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Igor Cardoso",
+          "cargo": "Vereador",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Nicolas Farias",
+          "cargo": "Prefeito",
+          "partido": "CPL",
+          "titular": true
+        }
+      ]
+    },
+    "PR": {
+      "nome": "Paraná",
+      "regiao": 5,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Olívia Gouveia",
+          "cargo": "Vereadora",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Isabela Santana",
+          "cargo": "Deputada estadual",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Vinícius Almeida",
+          "cargo": "Deputado estadual",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Bruno Vieira",
+          "cargo": "Prefeito",
+          "partido": "ADB",
+          "titular": false
+        },
+        {
+          "nome": "Eduardo Moreira",
+          "cargo": "Vereador",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Beatriz Queiroz",
+          "cargo": "Prefeita",
+          "partido": "FEX",
+          "titular": false
+        }
+      ]
+    },
+    "RJ": {
+      "nome": "Rio de Janeiro",
+      "regiao": 4,
+      "lema": "Capital com obras em revisão no orçamento municipal.",
+      "bancada": [
+        {
+          "nome": "Ruan Ferraz",
+          "cargo": "Deputado federal",
+          "partido": "ADB",
+          "titular": true
+        },
+        {
+          "nome": "Aline Fontes",
+          "cargo": "Prefeita",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Bruno Caldas",
+          "cargo": "Vereador",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Nara Vasconcelos",
+          "cargo": "Deputada federal",
+          "partido": "CPL",
+          "titular": true
+        }
+      ]
+    },
+    "RN": {
+      "nome": "Rio Grande do Norte",
+      "regiao": 2,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Thiago Castro",
+          "cargo": "Deputado federal",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Bruno Azevedo",
+          "cargo": "Deputado federal",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Vinícius Esteves",
+          "cargo": "Deputado estadual",
+          "partido": "FEX",
+          "titular": false
+        },
+        {
+          "nome": "Beatriz Lima",
+          "cargo": "Prefeita",
+          "partido": "ADB",
+          "titular": true
+        },
+        {
+          "nome": "Vinícius Camargo",
+          "cargo": "Vereador",
+          "partido": "CPL",
+          "titular": false
+        }
+      ]
+    },
+    "RO": {
+      "nome": "Rondônia",
+      "regiao": 1,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Patrícia Lima",
+          "cargo": "Deputada estadual",
+          "partido": "ADB",
+          "titular": true
+        },
+        {
+          "nome": "Rafael Torres",
+          "cargo": "Deputado federal",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Ana Lima",
+          "cargo": "Deputada federal",
+          "partido": "ADB",
+          "titular": false
+        },
+        {
+          "nome": "Daniela Martins",
+          "cargo": "Prefeita",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Vinícius Gouveia",
+          "cargo": "Senador",
+          "partido": "RDV",
+          "titular": false
+        },
+        {
+          "nome": "Beatriz Guimarães",
+          "cargo": "Vereadora",
+          "partido": "CDV",
+          "titular": true
+        }
+      ]
+    },
+    "RR": {
+      "nome": "Roraima",
+      "regiao": 1,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Eduardo Ribeiro",
+          "cargo": "Deputado estadual",
+          "partido": "UDP",
+          "titular": false
+        },
+        {
+          "nome": "Olívia Almeida",
+          "cargo": "Prefeita",
+          "partido": "ADB",
+          "titular": true
+        },
+        {
+          "nome": "Eduarda Siqueira",
+          "cargo": "Senadora",
+          "partido": "ADB",
+          "titular": true
+        },
+        {
+          "nome": "Sérgio Queiroz",
+          "cargo": "Vereador",
+          "partido": "FEX",
+          "titular": true
+        },
+        {
+          "nome": "Gustavo Ribeiro",
+          "cargo": "Senador",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Sérgio Esteves",
+          "cargo": "Prefeito",
+          "partido": "FEX",
+          "titular": true
+        }
+      ]
+    },
+    "RS": {
+      "nome": "Rio Grande do Sul",
+      "regiao": 5,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Vinícius Nunes",
+          "cargo": "Deputado federal",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Júlia Valente",
+          "cargo": "Deputada federal",
+          "partido": "MDV",
+          "titular": false
+        },
+        {
+          "nome": "Gabriela Melo",
+          "cargo": "Deputada estadual",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Sérgio Pinheiro",
+          "cargo": "Deputado estadual",
+          "partido": "ADB",
+          "titular": true
+        }
+      ]
+    },
+    "SC": {
+      "nome": "Santa Catarina",
+      "regiao": 5,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Felipe Rocha",
+          "cargo": "Senador",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Camila Torres",
+          "cargo": "Deputada estadual",
+          "partido": "CPL",
+          "titular": true
+        },
+        {
+          "nome": "Eduardo Cardoso",
+          "cargo": "Vereador",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Gabriela Almeida",
+          "cargo": "Senadora",
+          "partido": "PDP",
+          "titular": false
+        }
+      ]
+    },
+    "SE": {
+      "nome": "Sergipe",
+      "regiao": 2,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Júlia Nascimento",
+          "cargo": "Deputada federal",
+          "partido": "CDV",
+          "titular": false
+        },
+        {
+          "nome": "Ana Rocha",
+          "cargo": "Senadora",
+          "partido": "CPL",
+          "titular": true
+        },
+        {
+          "nome": "Eduarda Pinheiro",
+          "cargo": "Deputada estadual",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Rafael Sampaio",
+          "cargo": "Prefeito",
+          "partido": "CPL",
+          "titular": true
+        },
+        {
+          "nome": "Gustavo Nascimento",
+          "cargo": "Deputado estadual",
+          "partido": "CPL",
+          "titular": false
+        },
+        {
+          "nome": "Sérgio Azevedo",
+          "cargo": "Vereador",
+          "partido": "CPL",
+          "titular": true
+        }
+      ]
+    },
+    "SP": {
+      "nome": "São Paulo",
+      "regiao": 4,
+      "lema": "Maior estado em número de municípios: 645 cidades.",
+      "bancada": [
+        {
+          "nome": "Cléo Antunes",
+          "cargo": "Deputada federal",
+          "partido": "PDP",
+          "titular": true
+        },
+        {
+          "nome": "Téo Bragança",
+          "cargo": "Deputado federal",
+          "partido": "ADB",
+          "titular": true
+        },
+        {
+          "nome": "Débora Nunes",
+          "cargo": "Deputada estadual",
+          "partido": "CDV",
+          "titular": true
+        },
+        {
+          "nome": "Otávio Peixoto",
+          "cargo": "Deputado estadual",
+          "partido": "FEX",
+          "titular": false
+        },
+        {
+          "nome": "Sara Quintela",
+          "cargo": "Deputada estadual",
+          "partido": "UDP",
+          "titular": true
+        },
+        {
+          "nome": "Ivo Sarti",
+          "cargo": "Senador",
+          "partido": "MDV",
+          "titular": true
+        }
+      ]
+    },
+    "TO": {
+      "nome": "Tocantins",
+      "regiao": 1,
+      "lema": "Bancada de demonstração: os registros deste estado são fictícios e não descrevem pessoas reais.",
+      "bancada": [
+        {
+          "nome": "Igor Camargo",
+          "cargo": "Senador",
+          "partido": "RDV",
+          "titular": true
+        },
+        {
+          "nome": "Renata Esteves",
+          "cargo": "Vereadora",
+          "partido": "PDP",
+          "titular": true
+        },
+        {
+          "nome": "Valentina Castro",
+          "cargo": "Prefeita",
+          "partido": "MDV",
+          "titular": true
+        },
+        {
+          "nome": "Marcelo Melo",
+          "cargo": "Prefeito",
+          "partido": "CDV",
+          "titular": true
+        }
+      ]
+    }
+  },
+  "cidades": [
+    {
+      "nome": "Recife",
+      "uf": "PE",
+      "ibge": "2614106"
+    },
+    {
+      "nome": "Salvador",
+      "uf": "BA",
+      "ibge": "2927408"
+    },
+    {
+      "nome": "São Paulo",
+      "uf": "SP",
+      "ibge": "3550308"
+    },
+    {
+      "nome": "Rio de Janeiro",
+      "uf": "RJ",
+      "ibge": "3304557"
+    },
+    {
+      "nome": "Belo Horizonte",
+      "uf": "MG",
+      "ibge": "3106200"
+    },
+    {
+      "nome": "Curitiba",
+      "uf": "PR",
+      "ibge": "4106902"
+    },
+    {
+      "nome": "Porto Alegre",
+      "uf": "RS",
+      "ibge": "4314902"
+    },
+    {
+      "nome": "Brasília",
+      "uf": "DF",
+      "ibge": "5300108"
+    },
+    {
+      "nome": "Manaus",
+      "uf": "AM",
+      "ibge": "1302603"
+    },
+    {
+      "nome": "Fortaleza",
+      "uf": "CE",
+      "ibge": "2304400"
+    },
+    {
+      "nome": "Goiânia",
+      "uf": "GO",
+      "ibge": "5208707"
+    },
+    {
+      "nome": "Belém",
+      "uf": "PA",
+      "ibge": "1501402"
+    }
+  ],
+  "pessoas": [
+    {
+      "id": "marina-caldeira",
+      "nome": "Marina Caldeira",
+      "cargo": "Prefeita",
+      "cargoTipo": "prefeito",
+      "esfera": "municipal",
+      "uf": "PE",
+      "municipio": "Recife",
+      "partido": "CPL",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-01-01",
+        "fim": "2028-12-31"
+      },
+      "ultimoPleito": {
+        "ano": 2024,
+        "votos": 128940,
+        "percentual": 41.2,
+        "cargo": "Prefeita",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 34,
+        "nao": 21,
+        "abstencao": 3,
+        "ausente": 4,
+        "licenca": 6
+      },
+      "presenca": {
+        "sessoes": 68,
+        "compareceu": 58,
+        "justificadas": 4
+      },
+      "patrimonio": {
+        "valor": 418000,
+        "ano": 2026,
+        "anterior": 332000
+      },
+      "cota": null,
+      "cotaMotivo": "Prefeituras não publicam nota fiscal do gabinete neste portal.",
+      "propostas": [
+        {
+          "titulo": "Plano de creches em 12 bairros",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "em tramitação",
+          "fonte": "Câmara Municipal de Recife"
+        },
+        {
+          "titulo": "Programa de transporte adaptado",
+          "tipo": "Projeto de lei",
+          "ano": 2025,
+          "status": "viram lei",
+          "fonte": "Câmara Municipal de Recife"
+        }
+      ],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 2400000,
+          "destino": "Recife",
+          "area": "Saúde",
+          "descricao": "Equipamento para hospital municipal"
+        },
+        {
+          "ano": 2025,
+          "valor": 860000,
+          "destino": "Olinda",
+          "area": "Educação",
+          "descricao": "Reforma de duas escolas municipais"
+        }
+      ],
+      "comissoes": [
+        "Comissão de Saúde",
+        "Comissão de Orçamento"
+      ],
+      "campanha": {
+        "ano": 2024,
+        "arrecadado": 3400000,
+        "gasto": 3180000,
+        "doadores": [
+          {
+            "nome": "Cooperativa de Saúde Norte",
+            "valor": 120000
+          }
+        ]
+      }
+    },
+    {
+      "id": "otavio-bezerra",
+      "nome": "Otávio Bezerra",
+      "cargo": "Vereador",
+      "cargoTipo": "vereador",
+      "esfera": "municipal",
+      "uf": "PE",
+      "municipio": "Recife",
+      "partido": "FEX",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-01-01",
+        "fim": "2028-12-31"
+      },
+      "ultimoPleito": {
+        "ano": 2024,
+        "votos": 8420,
+        "percentual": 2.8,
+        "cargo": "Vereador",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 41,
+        "nao": 17,
+        "abstencao": 6,
+        "ausente": 9,
+        "licenca": 2
+      },
+      "presenca": null,
+      "presencaMotivo": "A Câmara Municipal não publica lista de presença nominada.",
+      "patrimonio": null,
+      "patrimonioMotivo": "Sem declaração de patrimônio nos dados disponíveis.",
+      "cota": null,
+      "cotaMotivo": "Vereadores não têm cota parlamentar neste portal.",
+      "propostas": [],
+      "emendas": [],
+      "comissoes": [
+        "Comissão de Educação"
+      ],
+      "campanha": {
+        "ano": 2024,
+        "arrecadado": 210000,
+        "gasto": 205000,
+        "doadores": []
+      }
+    },
+    {
+      "id": "celso-braganca",
+      "nome": "Celso Bragança",
+      "cargo": "Prefeito",
+      "cargoTipo": "prefeito",
+      "esfera": "municipal",
+      "uf": "BA",
+      "municipio": "Salvador",
+      "partido": "ADB",
+      "situacao": "mandato_interrompido",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-01-01",
+        "fim": "2028-12-31"
+      },
+      "ultimoPleito": {
+        "ano": 2024,
+        "votos": 214300,
+        "percentual": 38.9,
+        "cargo": "Prefeito",
+        "turno": 2
+      },
+      "votacao": {
+        "sim": 12,
+        "nao": 9,
+        "abstencao": 2,
+        "ausente": 3,
+        "licenca": 11
+      },
+      "presenca": {
+        "sessoes": 37,
+        "compareceu": 26,
+        "justificadas": 11
+      },
+      "patrimonio": {
+        "valor": 1250000,
+        "ano": 2026,
+        "anterior": 980000
+      },
+      "cota": null,
+      "cotaMotivo": "Prefeituras não publicam nota fiscal do gabinete neste portal.",
+      "propostas": [
+        {
+          "titulo": "Plano de mobilidade do centro",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "em tramitação",
+          "fonte": "Câmara Municipal de Salvador"
+        }
+      ],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 5200000,
+          "destino": "Salvador",
+          "area": "Mobilidade",
+          "descricao": "Recapeamento de vias principais"
+        }
+      ],
+      "comissoes": [
+        "Comissão de Transporte"
+      ],
+      "campanha": {
+        "ano": 2024,
+        "arrecadado": 9800000,
+        "gasto": 9400000,
+        "doadores": [
+          {
+            "nome": "Sindicato dos Metroviaros",
+            "valor": 340000
+          }
+        ]
+      }
+    },
+    {
+      "id": "luana-seixas",
+      "nome": "Luana Seixas",
+      "cargo": "Vereadora",
+      "cargoTipo": "vereador",
+      "esfera": "municipal",
+      "uf": "BA",
+      "municipio": "Salvador",
+      "partido": "RDV",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-01-01",
+        "fim": "2028-12-31"
+      },
+      "ultimoPleito": {
+        "ano": 2024,
+        "votos": 15200,
+        "percentual": 4.6,
+        "cargo": "Vereadora",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 29,
+        "nao": 24,
+        "abstencao": 5,
+        "ausente": 6,
+        "licenca": 1
+      },
+      "presenca": null,
+      "presencaMotivo": "A Câmara Municipal não publica lista de presença nominada.",
+      "patrimonio": {
+        "valor": 96000,
+        "ano": 2026,
+        "anterior": 71000
+      },
+      "cota": null,
+      "cotaMotivo": "Vereadores não têm cota parlamentar neste portal.",
+      "propostas": [
+        {
+          "titulo": "Programa de hortas comunitárias",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "viram lei",
+          "fonte": "Câmara Municipal de Salvador"
+        }
+      ],
+      "emendas": [],
+      "comissoes": [
+        "Comissão de Meio Ambiente"
+      ],
+      "campanha": {
+        "ano": 2024,
+        "arrecadado": 96000,
+        "gasto": 91000,
+        "doadores": []
+      }
+    },
+    {
+      "id": "aline-fontes",
+      "nome": "Aline Fontes",
+      "cargo": "Prefeita",
+      "cargoTipo": "prefeito",
+      "esfera": "municipal",
+      "uf": "RJ",
+      "municipio": "Rio de Janeiro",
+      "partido": "CDV",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-01-01",
+        "fim": "2028-12-31"
+      },
+      "ultimoPleito": {
+        "ano": 2024,
+        "votos": 512300,
+        "percentual": 44.3,
+        "cargo": "Prefeita",
+        "turno": 2
+      },
+      "votacao": {
+        "sim": 22,
+        "nao": 18,
+        "abstencao": 4,
+        "ausente": 5,
+        "licenca": 3
+      },
+      "presenca": {
+        "sessoes": 52,
+        "compareceu": 44,
+        "justificadas": 3
+      },
+      "patrimonio": {
+        "valor": 2240000,
+        "ano": 2026,
+        "anterior": 1980000
+      },
+      "cota": null,
+      "cotaMotivo": "Prefeituras não publicam nota fiscal do gabinete neste portal.",
+      "propostas": [
+        {
+          "titulo": "Plano de saneamento em 12 bairros",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "em tramitação",
+          "fonte": "Câmara Municipal do Rio de Janeiro"
+        },
+        {
+          "titulo": "Reforma de parques públicos",
+          "tipo": "Projeto de lei",
+          "ano": 2025,
+          "status": "viram lei",
+          "fonte": "Câmara Municipal do Rio de Janeiro"
+        }
+      ],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 12400000,
+          "destino": "Rio de Janeiro",
+          "area": "Saneamento",
+          "descricao": "Rede decollector de esgoto em 4 comunidades"
+        }
+      ],
+      "comissoes": [
+        "Comissão de Saneamento",
+        "Comissão de Educação"
+      ],
+      "campanha": {
+        "ano": 2024,
+        "arrecadado": 14200000,
+        "gasto": 13800000,
+        "doadores": [
+          {
+            "nome": "Rede de Saúde Metropolitanana",
+            "valor": 520000
+          }
+        ]
+      }
+    },
+    {
+      "id": "bruno-caldas",
+      "nome": "Bruno Caldas",
+      "cargo": "Vereador",
+      "cargoTipo": "vereador",
+      "esfera": "municipal",
+      "uf": "RJ",
+      "municipio": "Rio de Janeiro",
+      "partido": "MDV",
+      "situacao": "suplente",
+      "titular": false,
+      "mandato": {
+        "inicio": "2026-07-01",
+        "fim": "2028-12-31"
+      },
+      "ultimoPleito": {
+        "ano": 2024,
+        "votos": 24300,
+        "percentual": 6.1,
+        "cargo": "Vereador",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 8,
+        "nao": 6,
+        "abstencao": 1,
+        "ausente": 2,
+        "licenca": 0
+      },
+      "presenca": null,
+      "presencaMotivo": "A Câmara Municipal não publica lista de presença nominada.",
+      "patrimonio": {
+        "valor": 145000,
+        "ano": 2026,
+        "anterior": 120000
+      },
+      "cota": null,
+      "cotaMotivo": "Vereadores não têm cota parlamentar neste portal.",
+      "propostas": [],
+      "emendas": [],
+      "comissoes": [],
+      "campanha": {
+        "ano": 2024,
+        "arrecadado": 320000,
+        "gasto": 310000,
+        "doadores": []
+      }
+    },
+    {
+      "id": "cleo-antunes",
+      "nome": "Cléo Antunes",
+      "cargo": "Deputada federal",
+      "cargoTipo": "deputado_federal",
+      "esfera": "federal",
+      "uf": "SP",
+      "municipio": null,
+      "partido": "PDP",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-02-01",
+        "fim": "2029-01-31"
+      },
+      "ultimoPleito": {
+        "ano": 2022,
+        "votos": 312400,
+        "percentual": 7.4,
+        "cargo": "Deputada federal",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 96,
+        "nao": 58,
+        "abstencao": 12,
+        "ausente": 21,
+        "licenca": 9
+      },
+      "presenca": {
+        "sessoes": 196,
+        "compareceu": 178,
+        "justificadas": 9
+      },
+      "patrimonio": {
+        "valor": 5244568,
+        "ano": 2026,
+        "anterior": 355000
+      },
+      "cota": {
+        "valor": 240512,
+        "ano": 2026,
+        "itens": [
+          {
+            "descricao": "Contratação de consultoria em comunicação",
+            "valor": 96000,
+            "nota": null,
+            "fornecedor": "—"
+          },
+          {
+            "descricao": "Passagens e hospedagem",
+            "valor": 48200,
+            "nota": "NF 2026-44812",
+            "fornecedor": "Agência Viajeiro"
+          },
+          {
+            "descricao": "Material de expediente",
+            "valor": 12400,
+            "nota": null,
+            "fornecedor": "—"
+          }
+        ]
+      },
+      "propostas": [
+        {
+          "titulo": "Plano nacional de creches",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "viram lei",
+          "fonte": "Câmara dos Deputados"
+        },
+        {
+          "titulo": "Licenciamento ambiental simplificado",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "em tramitação",
+          "fonte": "Câmara dos Deputados"
+        },
+        {
+          "titulo": "Programa municipal de leitura",
+          "tipo": "Projeto de lei",
+          "ano": 2025,
+          "status": "arquivado",
+          "fonte": "Câmara dos Deputados"
+        }
+      ],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 1800000,
+          "destino": "São Paulo",
+          "area": "Educação",
+          "descricao": "Reforma de escolas municipais"
+        },
+        {
+          "ano": 2026,
+          "valor": 950000,
+          "destino": "Campinas",
+          "area": "Saúde",
+          "descricao": "Equipamento de UTI"
+        },
+        {
+          "ano": 2025,
+          "valor": 640000,
+          "destino": "Santos",
+          "area": "Mobilidade",
+          "descricao": "Pavimentação de vias"
+        }
+      ],
+      "comissoes": [
+        "Comissão de Educação",
+        "Comissão de Meio Ambiente"
+      ],
+      "campanha": {
+        "ano": 2022,
+        "arrecadado": 8340326,
+        "gasto": 7910000,
+        "doadores": [
+          {
+            "nome": "Instituto Brasil Digital",
+            "valor": 480000
+          }
+        ]
+      }
+    },
+    {
+      "id": "ruan-ferraz",
+      "nome": "Ruan Ferraz",
+      "cargo": "Deputado federal",
+      "cargoTipo": "deputado_federal",
+      "esfera": "federal",
+      "uf": "RJ",
+      "municipio": null,
+      "partido": "ADB",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-02-01",
+        "fim": "2029-01-31"
+      },
+      "ultimoPleito": {
+        "ano": 2022,
+        "votos": 487000,
+        "percentual": 11.8,
+        "cargo": "Deputado federal",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 118,
+        "nao": 41,
+        "abstencao": 6,
+        "ausente": 14,
+        "licenca": 4
+      },
+      "presenca": {
+        "sessoes": 196,
+        "compareceu": 191,
+        "justificadas": 4
+      },
+      "patrimonio": {
+        "valor": 780000,
+        "ano": 2026,
+        "anterior": 640000
+      },
+      "cota": {
+        "valor": 198300,
+        "ano": 2026,
+        "itens": [
+          {
+            "descricao": "Divulgação institucional",
+            "valor": 120000,
+            "nota": "NF 2026-10932",
+            "fornecedor": "Agência Ponto Norte"
+          },
+          {
+            "descricao": "Consultoria jurídica",
+            "valor": 42000,
+            "nota": null,
+            "fornecedor": "—"
+          }
+        ]
+      },
+      "propostas": [
+        {
+          "titulo": "Fundo permanente de saneamento",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "em tramitação",
+          "fonte": "Câmara dos Deputados"
+        },
+        {
+          "titulo": "Reforma do Código Penal",
+          "tipo": "Projeto de lei",
+          "ano": 2025,
+          "status": "viram lei",
+          "fonte": "Câmara dos Deputados"
+        }
+      ],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 2200000,
+          "destino": "Rio de Janeiro",
+          "area": "Saneamento",
+          "descricao": "Rede de esgoto em comunidade"
+        }
+      ],
+      "comissoes": [
+        "Comissão de Saneamento"
+      ],
+      "campanha": {
+        "ano": 2022,
+        "arrecadado": 6120000,
+        "gasto": 5980000,
+        "doadores": [
+          {
+            "nome": "Cooperativa de Saúde Leste",
+            "valor": 210000
+          }
+        ]
+      }
+    },
+    {
+      "id": "nara-vasconcelos",
+      "nome": "Nara Vasconcelos",
+      "cargo": "Deputada federal",
+      "cargoTipo": "deputado_federal",
+      "esfera": "federal",
+      "uf": "MG",
+      "municipio": null,
+      "partido": "CPL",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-02-01",
+        "fim": "2029-01-31"
+      },
+      "ultimoPleito": {
+        "ano": 2022,
+        "votos": 268000,
+        "percentual": 6.2,
+        "cargo": "Deputada federal",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 88,
+        "nao": 52,
+        "abstencao": 15,
+        "ausente": 19,
+        "licenca": 11
+      },
+      "presenca": {
+        "sessoes": 196,
+        "compareceu": 176,
+        "justificadas": 11
+      },
+      "patrimonio": {
+        "valor": 1120000,
+        "ano": 2026,
+        "anterior": 1030000
+      },
+      "cota": {
+        "valor": 210400,
+        "ano": 2026,
+        "itens": [
+          {
+            "descricao": "Assessoria técnica",
+            "valor": 88000,
+            "nota": "NF 2026-77120",
+            "fornecedor": "Consultoria Aurora"
+          },
+          {
+            "descricao": "Material de expediente",
+            "valor": 9600,
+            "nota": null,
+            "fornecedor": "—"
+          }
+        ]
+      },
+      "propostas": [
+        {
+          "titulo": "Programa de creches no campo",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "em tramitação",
+          "fonte": "Câmara dos Deputados"
+        }
+      ],
+      "emendas": [],
+      "comissoes": [
+        "Comissão de Agricultura"
+      ],
+      "campanha": {
+        "ano": 2022,
+        "arrecadado": 4120000,
+        "gasto": 4050000,
+        "doadores": []
+      }
+    },
+    {
+      "id": "helena-braga",
+      "nome": "Helena Braga",
+      "cargo": "Senadora",
+      "cargoTipo": "senador",
+      "esfera": "federal",
+      "uf": "AM",
+      "municipio": null,
+      "partido": "CDV",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2023-02-01",
+        "fim": "2031-01-31"
+      },
+      "ultimoPleito": {
+        "ano": 2022,
+        "votos": 921000,
+        "percentual": 18.4,
+        "cargo": "Senadora",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 74,
+        "nao": 39,
+        "abstencao": 8,
+        "ausente": 12,
+        "licenca": 14
+      },
+      "presenca": null,
+      "presencaMotivo": "O Senado não publica lista nominal de presença em votação.",
+      "patrimonio": {
+        "valor": 890000,
+        "ano": 2026,
+        "anterior": 760000
+      },
+      "cota": {
+        "valor": 312800,
+        "ano": 2026,
+        "itens": [
+          {
+            "descricao": "Divulgação institucional",
+            "valor": 150000,
+            "nota": "NF 2026-22091",
+            "fornecedor": "Agência Farol"
+          },
+          {
+            "descricao": "Viagens institucionais",
+            "valor": 88400,
+            "nota": null,
+            "fornecedor": "—"
+          }
+        ]
+      },
+      "propostas": [
+        {
+          "titulo": "Programa de navegação amazônica",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "em tramitação",
+          "fonte": "Senado Federal"
+        }
+      ],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 3100000,
+          "destino": "Manaus",
+          "area": "Infraestrutura",
+          "descricao": "Recuperação de vias urbanas"
+        }
+      ],
+      "comissoes": [
+        "Comissão de infraestrutura",
+        "Comissão de Ambiente"
+      ],
+      "campanha": {
+        "ano": 2022,
+        "arrecadado": 11200000,
+        "gasto": 10900000,
+        "doadores": []
+      }
+    },
+    {
+      "id": "ivo-sarti",
+      "nome": "Ivo Sarti",
+      "cargo": "Senador",
+      "cargoTipo": "senador",
+      "esfera": "federal",
+      "uf": "RS",
+      "municipio": null,
+      "partido": "MDV",
+      "situacao": "nao_eleito",
+      "titular": true,
+      "mandato": {
+        "inicio": "2019-02-01",
+        "fim": "2027-01-31"
+      },
+      "ultimoPleito": {
+        "ano": 2022,
+        "votos": 2410000,
+        "percentual": 44.7,
+        "cargo": "Senador",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 132,
+        "nao": 61,
+        "abstencao": 9,
+        "ausente": 22,
+        "licenca": 7
+      },
+      "presenca": null,
+      "presencaMotivo": "O Senado não publica lista nominal de presença em votação.",
+      "patrimonio": {
+        "valor": 3400000,
+        "ano": 2026,
+        "anterior": 3100000
+      },
+      "cota": {
+        "valor": 288500,
+        "ano": 2026,
+        "itens": [
+          {
+            "descricao": "Assessoria jurídica",
+            "valor": 96000,
+            "nota": "NF 2026-31007",
+            "fornecedor": "Advocacia Serra"
+          }
+        ]
+      },
+      "propostas": [],
+      "emendas": [],
+      "comissoes": [
+        "Comissão de Agricultura"
+      ],
+      "campanha": {
+        "ano": 2022,
+        "arrecadado": 22400000,
+        "gasto": 21900000,
+        "doadores": [
+          {
+            "nome": "Cooperativa do Sul",
+            "valor": 990000
+          }
+        ]
+      }
+    },
+    {
+      "id": "teo-braganca",
+      "nome": "Téo Bragança",
+      "cargo": "Deputado federal",
+      "cargoTipo": "deputado_federal",
+      "esfera": "federal",
+      "uf": "SP",
+      "municipio": null,
+      "partido": "ADB",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-02-01",
+        "fim": "2029-01-31"
+      },
+      "ultimoPleito": {
+        "ano": 2022,
+        "votos": 521000,
+        "percentual": 12.9,
+        "cargo": "Deputado federal",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 104,
+        "nao": 46,
+        "abstencao": 10,
+        "ausente": 17,
+        "licenca": 6
+      },
+      "presenca": {
+        "sessoes": 196,
+        "compareceu": 184,
+        "justificadas": 6
+      },
+      "patrimonio": {
+        "valor": 620000,
+        "ano": 2026,
+        "anterior": 540000
+      },
+      "cota": {
+        "valor": 226100,
+        "ano": 2026,
+        "itens": []
+      },
+      "propostas": [
+        {
+          "titulo": "Audiência pública sobre licenciamento",
+          "tipo": "Requerimento",
+          "ano": 2026,
+          "status": "atendido",
+          "fonte": "Câmara dos Deputados"
+        }
+      ],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 1400000,
+          "destino": "Santos",
+          "area": "Porto",
+          "descricao": "Dragagem do canal"
+        }
+      ],
+      "comissoes": [
+        "Comissão de Portos e Navegação"
+      ],
+      "campanha": {
+        "ano": 2022,
+        "arrecadado": 5400000,
+        "gasto": 5300000,
+        "doadores": []
+      }
+    },
+    {
+      "id": "debora-nunes",
+      "nome": "Débora Nunes",
+      "cargo": "Deputada estadual",
+      "cargoTipo": "deputado_estadual",
+      "esfera": "estadual",
+      "uf": "SP",
+      "municipio": null,
+      "partido": "CDV",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-02-01",
+        "fim": "2029-01-31"
+      },
+      "ultimoPleito": {
+        "ano": 2022,
+        "votos": 178000,
+        "percentual": 4.2,
+        "cargo": "Deputada estadual",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 51,
+        "nao": 33,
+        "abstencao": 7,
+        "ausente": 11,
+        "licenca": 5
+      },
+      "presenca": {
+        "sessoes": 107,
+        "compareceu": 98,
+        "justificadas": 5
+      },
+      "patrimonio": {
+        "valor": 540000,
+        "ano": 2026,
+        "anterior": 470000
+      },
+      "cota": null,
+      "cotaMotivo": "A cota parlamentar deste cargo não é publicada nesta demonstração.",
+      "propostas": [
+        {
+          "titulo": "Programa estadual de leitura",
+          "tipo": "Projeto de lei",
+          "ano": 2026,
+          "status": "em tramitação",
+          "fonte": "Assembleia Legislativa de São Paulo"
+        }
+      ],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 780000,
+          "destino": "Sorocaba",
+          "area": "Educação",
+          "descricao": "Biblioteca municipal"
+        }
+      ],
+      "comissoes": [
+        "Comissão de Educação"
+      ],
+      "campanha": {
+        "ano": 2022,
+        "arrecadado": 2100000,
+        "gasto": 2050000,
+        "doadores": []
+      }
+    },
+    {
+      "id": "fabio-lemos",
+      "nome": "Fábio Lemos",
+      "cargo": "Prefeito",
+      "cargoTipo": "prefeito",
+      "esfera": "municipal",
+      "uf": "MG",
+      "municipio": "Belo Horizonte",
+      "partido": "FEX",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-01-01",
+        "fim": "2028-12-31"
+      },
+      "ultimoPleito": {
+        "ano": 2024,
+        "votos": 402100,
+        "percentual": 55.3,
+        "cargo": "Prefeito",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 19,
+        "nao": 14,
+        "abstencao": 3,
+        "ausente": 6,
+        "licenca": 4
+      },
+      "presenca": {
+        "sessoes": 46,
+        "compareceu": 39,
+        "justificadas": 4
+      },
+      "patrimonio": {
+        "valor": 1580000,
+        "ano": 2026,
+        "anterior": 1490000
+      },
+      "cota": null,
+      "cotaMotivo": "Prefeituras não publicam nota fiscal do gabinete neste portal.",
+      "propostas": [],
+      "emendas": [],
+      "comissoes": [],
+      "campanha": {
+        "ano": 2024,
+        "arrecadado": 7400000,
+        "gasto": 7200000,
+        "doadores": []
+      }
+    },
+    {
+      "id": "marcelo-aguiar",
+      "nome": "Marcelo Aguiar",
+      "cargo": "Deputado distrital",
+      "cargoTipo": "deputado_estadual",
+      "esfera": "estadual",
+      "uf": "DF",
+      "municipio": "Brasília",
+      "partido": "UDP",
+      "situacao": "em_exercicio",
+      "titular": true,
+      "mandato": {
+        "inicio": "2025-02-01",
+        "fim": "2029-01-31"
+      },
+      "ultimoPleito": {
+        "ano": 2022,
+        "votos": 62000,
+        "percentual": 2.1,
+        "cargo": "Deputado distrital",
+        "turno": 1
+      },
+      "votacao": {
+        "sim": 38,
+        "nao": 26,
+        "abstencao": 4,
+        "ausente": 8,
+        "licenca": 3
+      },
+      "presenca": {
+        "sessoes": 79,
+        "compareceu": 71,
+        "justificadas": 3
+      },
+      "patrimonio": {
+        "valor": 210000,
+        "ano": 2026,
+        "anterior": 198000
+      },
+      "cota": null,
+      "cotaMotivo": "Cota parlamentar de mandato distrital não é publicada nesta demonstração.",
+      "propostas": [],
+      "emendas": [
+        {
+          "ano": 2026,
+          "valor": 420000,
+          "destino": "Brasília",
+          "area": "Mobilidade",
+          "descricao": "Ciclovia na Asa Norte"
+        }
+      ],
+      "comissoes": [
+        "Comissão de Mobilidade"
+      ],
+      "campanha": {
+        "ano": 2022,
+        "arrecadado": 380000,
+        "gasto": 370000,
+        "doadores": []
+      }
+    }
+  ],
+  "camadaValores": {
+    "contas": {
+      "AC": {
+        "valor": 5688,
+        "semDado": false
+      },
+      "AL": {
+        "valor": 4754,
+        "semDado": false
+      },
+      "AM": {
+        "valor": 5048,
+        "semDado": false
+      },
+      "AP": {
+        "valor": 6455,
+        "semDado": false
+      },
+      "BA": {
+        "valor": 6245,
+        "semDado": false
+      },
+      "CE": {
+        "valor": 3194,
+        "semDado": false
+      },
+      "DF": {
+        "valor": 4464,
+        "semDado": false
+      },
+      "ES": {
+        "valor": 6035,
+        "semDado": false
+      },
+      "GO": {
+        "valor": 3777,
+        "semDado": false
+      },
+      "MA": {
+        "valor": 5881,
+        "semDado": false
+      },
+      "MG": {
+        "valor": 6483,
+        "semDado": false
+      },
+      "MS": {
+        "valor": 2509,
+        "semDado": false
+      },
+      "MT": {
+        "valor": 3375,
+        "semDado": false
+      },
+      "PA": {
+        "valor": 6496,
+        "semDado": false
+      },
+      "PB": {
+        "valor": 6019,
+        "semDado": false
+      },
+      "PE": {
+        "valor": 2622,
+        "semDado": false
+      },
+      "PI": {
+        "valor": 3431,
+        "semDado": false
+      },
+      "PR": {
+        "valor": 5551,
+        "semDado": false
+      },
+      "RJ": {
+        "valor": 5741,
+        "semDado": false
+      },
+      "RN": {
+        "valor": 6393,
+        "semDado": false
+      },
+      "RO": {
+        "valor": 5735,
+        "semDado": false
+      },
+      "RR": {
+        "valor": 3953,
+        "semDado": false
+      },
+      "RS": {
+        "valor": 6498,
+        "semDado": false
+      },
+      "SC": {
+        "valor": 5986,
+        "semDado": true
+      },
+      "SE": {
+        "valor": 3928,
+        "semDado": false
+      },
+      "SP": {
+        "valor": 5511,
+        "semDado": true
+      },
+      "TO": {
+        "valor": 6221,
+        "semDado": false
+      }
+    },
+    "escolas": {
+      "AC": {
+        "valor": 82,
+        "semDado": false
+      },
+      "AL": {
+        "valor": 78.7,
+        "semDado": false
+      },
+      "AM": {
+        "valor": 63.4,
+        "semDado": false
+      },
+      "AP": {
+        "valor": 69.7,
+        "semDado": false
+      },
+      "BA": {
+        "valor": 82.8,
+        "semDado": false
+      },
+      "CE": {
+        "valor": 78.9,
+        "semDado": false
+      },
+      "DF": {
+        "valor": 62.6,
+        "semDado": false
+      },
+      "ES": {
+        "valor": 69.7,
+        "semDado": false
+      },
+      "GO": {
+        "valor": 76,
+        "semDado": false
+      },
+      "MA": {
+        "valor": 77.6,
+        "semDado": false
+      },
+      "MG": {
+        "valor": 79.7,
+        "semDado": false
+      },
+      "MS": {
+        "valor": 80.5,
+        "semDado": false
+      },
+      "MT": {
+        "valor": 75.5,
+        "semDado": false
+      },
+      "PA": {
+        "valor": 79.9,
+        "semDado": false
+      },
+      "PB": {
+        "valor": 71.4,
+        "semDado": false
+      },
+      "PE": {
+        "valor": 67.3,
+        "semDado": false
+      },
+      "PI": {
+        "valor": 72.3,
+        "semDado": false
+      },
+      "PR": {
+        "valor": 82,
+        "semDado": false
+      },
+      "RJ": {
+        "valor": 76.6,
+        "semDado": false
+      },
+      "RN": {
+        "valor": 74,
+        "semDado": false
+      },
+      "RO": {
+        "valor": 78.1,
+        "semDado": false
+      },
+      "RR": {
+        "valor": 66.5,
+        "semDado": false
+      },
+      "RS": {
+        "valor": 72.9,
+        "semDado": false
+      },
+      "SC": {
+        "valor": 65.7,
+        "semDado": true
+      },
+      "SE": {
+        "valor": 73.2,
+        "semDado": false
+      },
+      "SP": {
+        "valor": 62.8,
+        "semDado": true
+      },
+      "TO": {
+        "valor": 79.5,
+        "semDado": false
+      }
+    },
+    "obras": {
+      "AC": {
+        "valor": 22.4,
+        "semDado": false
+      },
+      "AL": {
+        "valor": 21.7,
+        "semDado": false
+      },
+      "AM": {
+        "valor": 22.5,
+        "semDado": false
+      },
+      "AP": {
+        "valor": 20.1,
+        "semDado": false
+      },
+      "BA": {
+        "valor": 29.8,
+        "semDado": false
+      },
+      "CE": {
+        "valor": 18.9,
+        "semDado": false
+      },
+      "DF": {
+        "valor": 24.1,
+        "semDado": false
+      },
+      "ES": {
+        "valor": 20.8,
+        "semDado": false
+      },
+      "GO": {
+        "valor": 20.5,
+        "semDado": false
+      },
+      "MA": {
+        "valor": 20.4,
+        "semDado": false
+      },
+      "MG": {
+        "valor": 28.2,
+        "semDado": false
+      },
+      "MS": {
+        "valor": 24.5,
+        "semDado": false
+      },
+      "MT": {
+        "valor": 21.2,
+        "semDado": false
+      },
+      "PA": {
+        "valor": 25.3,
+        "semDado": false
+      },
+      "PB": {
+        "valor": 22.7,
+        "semDado": false
+      },
+      "PE": {
+        "valor": 28.8,
+        "semDado": false
+      },
+      "PI": {
+        "valor": 28.9,
+        "semDado": false
+      },
+      "PR": {
+        "valor": 23.2,
+        "semDado": false
+      },
+      "RJ": {
+        "valor": 23.9,
+        "semDado": false
+      },
+      "RN": {
+        "valor": 22.9,
+        "semDado": false
+      },
+      "RO": {
+        "valor": 18.7,
+        "semDado": false
+      },
+      "RR": {
+        "valor": 19.6,
+        "semDado": false
+      },
+      "RS": {
+        "valor": 28.5,
+        "semDado": false
+      },
+      "SC": {
+        "valor": 22.2,
+        "semDado": true
+      },
+      "SE": {
+        "valor": 22.4,
+        "semDado": false
+      },
+      "SP": {
+        "valor": 29.7,
+        "semDado": true
+      },
+      "TO": {
+        "valor": 25.3,
+        "semDado": false
+      }
+    },
+    "dinheiro": {
+      "AC": {
+        "valor": 9492,
+        "semDado": false
+      },
+      "AL": {
+        "valor": 12988,
+        "semDado": false
+      },
+      "AM": {
+        "valor": 13779,
+        "semDado": false
+      },
+      "AP": {
+        "valor": 13078,
+        "semDado": false
+      },
+      "BA": {
+        "valor": 10471,
+        "semDado": false
+      },
+      "CE": {
+        "valor": 12161,
+        "semDado": false
+      },
+      "DF": {
+        "valor": 13097,
+        "semDado": false
+      },
+      "ES": {
+        "valor": 13783,
+        "semDado": false
+      },
+      "GO": {
+        "valor": 11448,
+        "semDado": false
+      },
+      "MA": {
+        "valor": 9626,
+        "semDado": false
+      },
+      "MG": {
+        "valor": 10412,
+        "semDado": false
+      },
+      "MS": {
+        "valor": 12247,
+        "semDado": false
+      },
+      "MT": {
+        "valor": 10941,
+        "semDado": false
+      },
+      "PA": {
+        "valor": 10654,
+        "semDado": false
+      },
+      "PB": {
+        "valor": 12599,
+        "semDado": false
+      },
+      "PE": {
+        "valor": 12961,
+        "semDado": false
+      },
+      "PI": {
+        "valor": 11288,
+        "semDado": false
+      },
+      "PR": {
+        "valor": 9603,
+        "semDado": false
+      },
+      "RJ": {
+        "valor": 12419,
+        "semDado": false
+      },
+      "RN": {
+        "valor": 9864,
+        "semDado": false
+      },
+      "RO": {
+        "valor": 12304,
+        "semDado": false
+      },
+      "RR": {
+        "valor": 10463,
+        "semDado": false
+      },
+      "RS": {
+        "valor": 11266,
+        "semDado": false
+      },
+      "SC": {
+        "valor": 9970,
+        "semDado": true
+      },
+      "SE": {
+        "valor": 10716,
+        "semDado": false
+      },
+      "SP": {
+        "valor": 12137,
+        "semDado": true
+      },
+      "TO": {
+        "valor": 10850,
+        "semDado": false
+      }
+    },
+    "votacoes": {
+      "AC": {
+        "valor": 89,
+        "semDado": false
+      },
+      "AL": {
+        "valor": 95.1,
+        "semDado": false
+      },
+      "AM": {
+        "valor": 96.4,
+        "semDado": false
+      },
+      "AP": {
+        "valor": 95.2,
+        "semDado": false
+      },
+      "BA": {
+        "valor": 90.7,
+        "semDado": false
+      },
+      "CE": {
+        "valor": 93.6,
+        "semDado": false
+      },
+      "DF": {
+        "valor": 95.3,
+        "semDado": false
+      },
+      "ES": {
+        "valor": 96.5,
+        "semDado": false
+      },
+      "GO": {
+        "valor": 92.4,
+        "semDado": false
+      },
+      "MA": {
+        "valor": 89.3,
+        "semDado": false
+      },
+      "MG": {
+        "valor": 90.6,
+        "semDado": false
+      },
+      "MS": {
+        "valor": 93.8,
+        "semDado": false
+      },
+      "MT": {
+        "valor": 91.5,
+        "semDado": false
+      },
+      "PA": {
+        "valor": 91,
+        "semDado": false
+      },
+      "PB": {
+        "valor": 94.4,
+        "semDado": false
+      },
+      "PE": {
+        "valor": 95,
+        "semDado": false
+      },
+      "PI": {
+        "valor": 92.1,
+        "semDado": false
+      },
+      "PR": {
+        "valor": 89.2,
+        "semDado": false
+      },
+      "RJ": {
+        "valor": 94.1,
+        "semDado": false
+      },
+      "RN": {
+        "valor": 89.7,
+        "semDado": false
+      },
+      "RO": {
+        "valor": 93.9,
+        "semDado": false
+      },
+      "RR": {
+        "valor": 90.7,
+        "semDado": false
+      },
+      "RS": {
+        "valor": 92.1,
+        "semDado": false
+      },
+      "SC": {
+        "valor": 89.9,
+        "semDado": true
+      },
+      "SE": {
+        "valor": 91.1,
+        "semDado": false
+      },
+      "SP": {
+        "valor": 93.6,
+        "semDado": true
+      },
+      "TO": {
+        "valor": 91.4,
+        "semDado": false
+      }
+    }
+  },
+  "historico": {
+    "marina-caldeira": [
+      {
+        "ano": 2026,
+        "sim": 14,
+        "nao": 9,
+        "abstencao": 1,
+        "ausente": 2,
+        "licenca": 2
+      },
+      {
+        "ano": 2025,
+        "sim": 10,
+        "nao": 6,
+        "abstencao": 1,
+        "ausente": 1,
+        "licenca": 2
+      },
+      {
+        "ano": 2024,
+        "sim": 10,
+        "nao": 6,
+        "abstencao": 1,
+        "ausente": 1,
+        "licenca": 2
+      }
+    ],
+    "otavio-bezerra": [
+      {
+        "ano": 2026,
+        "sim": 20,
+        "nao": 9,
+        "abstencao": 2,
+        "ausente": 4,
+        "licenca": 1
+      },
+      {
+        "ano": 2025,
+        "sim": 13,
+        "nao": 6,
+        "abstencao": 2,
+        "ausente": 3,
+        "licenca": 1
+      },
+      {
+        "ano": 2024,
+        "sim": 8,
+        "nao": 2,
+        "abstencao": 2,
+        "ausente": 2,
+        "licenca": 0
+      }
+    ],
+    "celso-braganca": [
+      {
+        "ano": 2026,
+        "sim": 5,
+        "nao": 4,
+        "abstencao": 1,
+        "ausente": 1,
+        "licenca": 5
+      },
+      {
+        "ano": 2025,
+        "sim": 3,
+        "nao": 3,
+        "abstencao": 1,
+        "ausente": 1,
+        "licenca": 4
+      },
+      {
+        "ano": 2024,
+        "sim": 4,
+        "nao": 2,
+        "abstencao": 0,
+        "ausente": 1,
+        "licenca": 2
+      }
+    ],
+    "luana-seixas": [
+      {
+        "ano": 2026,
+        "sim": 12,
+        "nao": 10,
+        "abstencao": 2,
+        "ausente": 3,
+        "licenca": 0
+      },
+      {
+        "ano": 2025,
+        "sim": 9,
+        "nao": 8,
+        "abstencao": 2,
+        "ausente": 2,
+        "licenca": 0
+      },
+      {
+        "ano": 2024,
+        "sim": 8,
+        "nao": 6,
+        "abstencao": 1,
+        "ausente": 1,
+        "licenca": 1
+      }
+    ],
+    "aline-fontes": [
+      {
+        "ano": 2026,
+        "sim": 10,
+        "nao": 9,
+        "abstencao": 2,
+        "ausente": 3,
+        "licenca": 1
+      },
+      {
+        "ano": 2025,
+        "sim": 8,
+        "nao": 5,
+        "abstencao": 1,
+        "ausente": 2,
+        "licenca": 1
+      },
+      {
+        "ano": 2024,
+        "sim": 4,
+        "nao": 4,
+        "abstencao": 1,
+        "ausente": 0,
+        "licenca": 1
+      }
+    ],
+    "bruno-caldas": [
+      {
+        "ano": 2026,
+        "sim": 3,
+        "nao": 3,
+        "abstencao": 0,
+        "ausente": 1,
+        "licenca": 0
+      },
+      {
+        "ano": 2025,
+        "sim": 3,
+        "nao": 2,
+        "abstencao": 0,
+        "ausente": 1,
+        "licenca": 0
+      },
+      {
+        "ano": 2024,
+        "sim": 2,
+        "nao": 1,
+        "abstencao": 1,
+        "ausente": 0,
+        "licenca": 0
+      }
+    ],
+    "cleo-antunes": [
+      {
+        "ano": 2026,
+        "sim": 43,
+        "nao": 27,
+        "abstencao": 6,
+        "ausente": 11,
+        "licenca": 5
+      },
+      {
+        "ano": 2025,
+        "sim": 35,
+        "nao": 17,
+        "abstencao": 4,
+        "ausente": 7,
+        "licenca": 3
+      },
+      {
+        "ano": 2024,
+        "sim": 18,
+        "nao": 14,
+        "abstencao": 2,
+        "ausente": 3,
+        "licenca": 1
+      }
+    ],
+    "ruan-ferraz": [
+      {
+        "ano": 2026,
+        "sim": 53,
+        "nao": 18,
+        "abstencao": 2,
+        "ausente": 7,
+        "licenca": 2
+      },
+      {
+        "ano": 2025,
+        "sim": 44,
+        "nao": 14,
+        "abstencao": 2,
+        "ausente": 5,
+        "licenca": 1
+      },
+      {
+        "ano": 2024,
+        "sim": 21,
+        "nao": 9,
+        "abstencao": 2,
+        "ausente": 2,
+        "licenca": 1
+      }
+    ],
+    "nara-vasconcelos": [
+      {
+        "ano": 2026,
+        "sim": 36,
+        "nao": 24,
+        "abstencao": 8,
+        "ausente": 8,
+        "licenca": 5
+      },
+      {
+        "ano": 2025,
+        "sim": 27,
+        "nao": 15,
+        "abstencao": 5,
+        "ausente": 6,
+        "licenca": 3
+      },
+      {
+        "ano": 2024,
+        "sim": 25,
+        "nao": 13,
+        "abstencao": 2,
+        "ausente": 5,
+        "licenca": 3
+      }
+    ],
+    "helena-braga": [
+      {
+        "ano": 2026,
+        "sim": 38,
+        "nao": 20,
+        "abstencao": 4,
+        "ausente": 6,
+        "licenca": 7
+      },
+      {
+        "ano": 2025,
+        "sim": 26,
+        "nao": 14,
+        "abstencao": 3,
+        "ausente": 4,
+        "licenca": 5
+      },
+      {
+        "ano": 2024,
+        "sim": 10,
+        "nao": 5,
+        "abstencao": 1,
+        "ausente": 2,
+        "licenca": 2
+      }
+    ],
+    "ivo-sarti": [
+      {
+        "ano": 2026,
+        "sim": 57,
+        "nao": 30,
+        "abstencao": 4,
+        "ausente": 11,
+        "licenca": 3
+      },
+      {
+        "ano": 2025,
+        "sim": 45,
+        "nao": 20,
+        "abstencao": 3,
+        "ausente": 7,
+        "licenca": 2
+      },
+      {
+        "ano": 2024,
+        "sim": 30,
+        "nao": 11,
+        "abstencao": 2,
+        "ausente": 4,
+        "licenca": 2
+      }
+    ],
+    "teo-braganca": [
+      {
+        "ano": 2026,
+        "sim": 54,
+        "nao": 22,
+        "abstencao": 4,
+        "ausente": 9,
+        "licenca": 3
+      },
+      {
+        "ano": 2025,
+        "sim": 38,
+        "nao": 14,
+        "abstencao": 3,
+        "ausente": 6,
+        "licenca": 2
+      },
+      {
+        "ano": 2024,
+        "sim": 12,
+        "nao": 10,
+        "abstencao": 3,
+        "ausente": 2,
+        "licenca": 1
+      }
+    ],
+    "debora-nunes": [
+      {
+        "ano": 2026,
+        "sim": 23,
+        "nao": 14,
+        "abstencao": 4,
+        "ausente": 5,
+        "licenca": 2
+      },
+      {
+        "ano": 2025,
+        "sim": 18,
+        "nao": 10,
+        "abstencao": 3,
+        "ausente": 4,
+        "licenca": 1
+      },
+      {
+        "ano": 2024,
+        "sim": 10,
+        "nao": 9,
+        "abstencao": 0,
+        "ausente": 2,
+        "licenca": 2
+      }
+    ],
+    "fabio-lemos": [
+      {
+        "ano": 2026,
+        "sim": 8,
+        "nao": 6,
+        "abstencao": 2,
+        "ausente": 2,
+        "licenca": 2
+      },
+      {
+        "ano": 2025,
+        "sim": 6,
+        "nao": 5,
+        "abstencao": 1,
+        "ausente": 2,
+        "licenca": 1
+      },
+      {
+        "ano": 2024,
+        "sim": 5,
+        "nao": 3,
+        "abstencao": 0,
+        "ausente": 2,
+        "licenca": 1
+      }
+    ],
+    "marcelo-aguiar": [
+      {
+        "ano": 2026,
+        "sim": 17,
+        "nao": 12,
+        "abstencao": 2,
+        "ausente": 4,
+        "licenca": 2
+      },
+      {
+        "ano": 2025,
+        "sim": 13,
+        "nao": 10,
+        "abstencao": 1,
+        "ausente": 3,
+        "licenca": 1
+      },
+      {
+        "ano": 2024,
+        "sim": 8,
+        "nao": 4,
+        "abstencao": 1,
+        "ausente": 1,
+        "licenca": 0
+      }
+    ]
+  }
+}
