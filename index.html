@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Portal de transparência política: quem me representa, o que essa pessoa fez no mandato e de onde veio cada número."
+    />
+    <title>Transparência Política — quem me representa e o que foi feito</title>
+
+    <link rel="icon" href="app/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="replica/design/tokens.css" />
+    <link rel="stylesheet" href="app/css/base.css" />
+    <link rel="stylesheet" href="app/css/components.css" />
+    <link rel="stylesheet" href="app/css/screens.css" />
+    <link rel="stylesheet" href="app/css/a11y.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#view">Pular para o conteúdo</a>
+
+    <header class="chrome" id="chrome">
+      <div class="chrome__bar">
+        <a class="chrome__brand" href="#/" aria-label="Transparência Política, página inicial">
+          <span class="chrome__mark" aria-hidden="true"></span>
+          <span class="chrome__brandtext">
+            <strong>Transparência Política</strong>
+            <span class="chrome__tagline">dados oficiais, sem nota e sem ranking</span>
+          </span>
+        </a>
+
+        <nav class="chrome__nav" aria-label="Seções">
+          <a class="navpill" href="#/me" data-nav="me">Me representa</a>
+          <a class="navpill" href="#/comparar" data-nav="comparar">Comparar</a>
+          <a class="navpill" href="#/sobre" data-nav="sobre">Método</a>
+        </nav>
+
+        <div class="chrome__actions">
+          <button
+            type="button"
+            class="iconbtn"
+            id="search-open"
+            aria-haspopup="dialog"
+            aria-label="Buscar no site"
+            data-press="scale"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="iconbtn__glyph">
+              <circle cx="11" cy="11" r="6.25" fill="none" stroke="currentColor" stroke-width="1.75" />
+              <path d="M15.6 15.6 L20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+            </svg>
+          </button>
+          <a class="btn btn--primary chrome__cta" href="#/me" data-press="scale">Quem me representa</a>
+        </div>
+      </div>
+      <div class="chrome__edge" aria-hidden="true"></div>
+    </header>
+
+    <div class="demo-banner" role="note">
+      <strong>Protótipo.</strong> Geometria do mapa e nomes de estados são reais; os números, as pessoas e os
+      partidos deste protótipo são <strong>fictícios</strong>, criados só para demonstrar a interface.
+      <a href="#/sobre">Ver o método</a>
+    </div>
+
+    <main id="view" tabindex="-1"></main>
+
+    <footer class="footer">
+      <div class="footer__grid">
+        <div class="footer__col">
+          <h2 class="footer__title">Transparência Política</h2>
+          <p class="footer__text">
+            Todo número desta interface vem de uma fonte oficial e é exibido com a fonte e a data da última
+            atualização. Dado que a fonte não publica aparece como <span class="dash">—</span>, nunca como zero.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__subtitle">Navegar</h3>
+          <ul class="footer__list">
+            <li><a href="#/">Mapa</a></li>
+            <li><a href="#/me">Me representa</a></li>
+            <li><a href="#/comparar">Comparar</a></li>
+            <li><a href="#/quem">Quem é quem</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__subtitle">Transparência</h3>
+          <ul class="footer__list">
+            <li><a href="#/sobre">Método e neutralidade</a></li>
+            <li><a href="#/sobre#faltando">Como tratamos dado ausente</a></li>
+            <li><a href="#/sobre#fontes">Fontes</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__subtitle">Participar</h3>
+          <ul class="footer__list">
+            <li><button type="button" class="linkbtn" data-action="suggest">Sugerir um dado</button></li>
+            <li><button type="button" class="linkbtn" data-action="suggest">Avisar um erro</button></li>
+            <li><a href="#/ajuda">Como ajudar</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__fine">
+        Protótipo de interface. Reproduz o modelo de dados e as regras de apresentação do Politicômetro, sem
+        copiar marca, conteúdo editorial nem base de pessoas.
+      </p>
+    </footer>
+
+    <!-- Sheet (bottom sheet no celular, painel lateral no desktop) -->
+    <div class="sheet-root" id="sheet-root" hidden></div>
+
+    <!-- Dialog genérico (busca, sugestão) -->
+    <div class="dialog-root" id="dialog-root" hidden></div>
+
+    <!-- Toast -->
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
+
+    <!-- Anúncio de rota para leitor de tela -->
+    <div class="sr-only" id="route-announcer" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="app/js/main.js"></script>
+  </body>
+</html>

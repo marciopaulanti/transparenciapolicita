@@ -1,0 +1,268 @@
+/* ============================================================================
+   Design tokens — clone do Politicômetro, direção Apple
+   ---------------------------------------------------------------------------
+   Regras que governam estes tokens:
+   1. Cor NUNCA codifica "bom/ruim". Só codifica lugar, tipo de cargo ou
+      estado de um dado (regra do /sobre do original). Partido só aparece
+      como identidade de uma cadeira, nunca como julgamento.
+   2. Dado ausente é "—", com tertiary. Nunca 0, nunca vermelho.
+   3. Superfície translúcida nunca é empilhada sobre outra translúcida leve.
+   4. Espaçamento em rem (Dynamic Type), tipografia com tracking por tamanho.
+   5. Todo movimento tem contraparte em prefers-reduced-motion.
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* ------------------------------------------------------------- surfaces */
+  --surface-canvas: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-sunken: #f4f4f7;
+  --surface-inset: #f7f7fa;
+  --surface-chrome: rgba(255, 255, 255, 0.72);          /* header, barra de filtro */
+  --surface-chrome-strong: rgba(246, 246, 249, 0.86);  /* material mais pesado */
+  --surface-sheet: rgba(250, 250, 252, 0.88);           /* bottom sheet */
+  --surface-scrim: rgba(16, 16, 20, 0.32);
+  --surface-press: rgba(16, 16, 20, 0.06);
+
+  /* ----------------------------------------------------------------- text */
+  --text-primary: #101014;
+  --text-secondary: #5b5b66;
+  --text-tertiary: #8a8a94;
+  --text-on-accent: #ffffff;
+
+  /* -------------------------------------------------------------- lines */
+  --separator: rgba(16, 16, 20, 0.1);
+  --separator-strong: rgba(16, 16, 20, 0.16);
+  --separator-quiet: rgba(16, 16, 20, 0.06);
+
+  /* ------------------------------------------------------------- accent */
+  --accent: #2b4bf2;
+  --accent-press: #1e37c7;
+  --accent-quiet: rgba(43, 75, 242, 0.12);
+  --accent-text: #1f37c9;
+  --focus-ring: #2b4bf2;
+
+  /* ------------------------------------------------- semântica de dados */
+  --data-sim: #1f7a4d;        /* voto favoravel */
+  --data-nao: #b3261e;        /* voto contra */
+  --data-ausente: #8a8a94;    /* nao compareceu */
+  --data-licenca: #a9a9b2;    /* licenca, missao, suspensao */
+  --data-secreto: #6e6e76;     /* votacao secreta: placar sem nomes */
+  --data-ilegivel: #8a8a94;   /* dado que a fonte nao publica */
+  --data-neutro: #e7e7ec;
+
+  /* --------------------------------------------- rampa do mapa (1 matiz) */
+  --ramp-0: #eef1f9;
+  --ramp-1: #dbe1f5;
+  --ramp-2: #c2ccee;
+  --ramp-3: #a3b0e4;
+  --ramp-4: #7e90d8;
+  --ramp-5: #566ec4;
+  --ramp-6: #2b4bf2;
+
+  /* ----------------------------------------------------------- spacing */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* -------------------------------------------------------------- radii */
+  --radius-chip: 999px;
+  --radius-control: 12px;
+  --radius-card: 16px;
+  --radius-modal: 20px;
+  --radius-sheet: 24px;
+
+  /* ------------------------------------------- materiais e profundidade */
+  --blur-chrome: 20px;
+  --blur-sheet: 32px;
+  --shadow-chip: 0 1px 2px rgba(16, 16, 20, 0.06);
+  --shadow-card: 0 1px 2px rgba(16, 16, 20, 0.05), 0 8px 24px rgba(16, 16, 20, 0.06);
+  --shadow-sheet: 0 -1px 0 rgba(16, 16, 20, 0.06), 0 -18px 48px rgba(16, 16, 20, 0.18);
+  --hairline-top: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* ------------------------------------------------------------ motion */
+  --motion-press: 100ms cubic-bezier(0.2, 0, 0, 1);
+  --motion-hover: 140ms cubic-bezier(0.2, 0, 0, 1);
+  --motion-standard: 240ms cubic-bezier(0.32, 0, 0, 1);
+  --motion-enter: 320ms cubic-bezier(0.32, 0, 0, 1);
+  --motion-exit: 200ms cubic-bezier(0.32, 0, 0, 1);
+  /* curva espelhada: a volta usa exatamente o inverso da ida */
+  --motion-reverse: 240ms cubic-bezier(0.68, 0, 0, 1);
+
+  /* parâmetros de mola (response em segundos, bounce 0..1) */
+  --spring-ui-response: 0.3;
+  --spring-ui-bounce: 0;      /* criticamente amortecida: sem overshoot */
+  --spring-momentum-response: 0.4;
+  --spring-momentum-bounce: 0.2; /* so com gesto que carregou inercia */
+  --spring-sheet-response: 0.3;
+  --spring-sheet-bounce: 0.2;
+
+  /* ---------------------------------------------------------- tipografia */
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Cada token de tipo é um atalho "font" válido (família + peso + tamanho +
+     leading). O tracking vive em --track-*: letter-spacing não existe dentro
+     do atalho font, e tracking é específico do tamanho — um valor único para
+     tudo fica errado em algum lugar. */
+  --type-display: 700 clamp(2.75rem, 9vw, 5.5rem) / 0.92 var(--font-ui);
+  --track-display: -0.035em;
+
+  --type-hero: 700 clamp(1.75rem, 4.5vw, 2.5rem) / 1.02 var(--font-ui);
+  --track-hero: -0.028em;
+
+  --type-title-1: 700 1.5rem / 1.1 var(--font-ui);
+  --track-title-1: -0.022em;
+
+  --type-title-2: 650 1.25rem / 1.2 var(--font-ui);
+  --track-title-2: -0.018em;
+
+  --type-title-3: 600 1.0625rem / 1.3 var(--font-ui);
+  --track-title-3: -0.01em;
+
+  --type-body: 400 1rem / 1.5 var(--font-ui);
+  --track-body: 0;
+
+  --type-body-lg: 400 1.0625rem / 1.6 var(--font-ui);
+  --track-body-lg: 0;
+
+  --type-body-dense: 400 0.9375rem / 1.35 var(--font-ui);   /* tabelas e listas de dado */
+  --track-body-dense: 0;
+
+  --type-label: 600 0.8125rem / 1.35 var(--font-ui);
+  --track-label: 0.01em;
+
+  --type-caption: 400 0.8125rem / 1.4 var(--font-ui);
+  --track-caption: 0.005em;
+
+  --type-eyebrow: 700 0.6875rem / 1.2 var(--font-ui);
+  --track-eyebrow: 0.08em;
+
+  /* numeros: sempre tabulares, para coluna alinhar */
+  --numeric: tabular-nums;
+}
+
+/* ============================================================================
+   Escuro — materiais mais pesados, rampa invertida (claro = alto no escuro)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-canvas: #000000;
+    --surface-elevated: #1c1c1e;
+    --surface-sunken: #0f0f11;
+    --surface-inset: #161618;
+    --surface-chrome: rgba(28, 28, 30, 0.72);
+    --surface-chrome-strong: rgba(22, 22, 24, 0.88);
+    --surface-sheet: rgba(24, 24, 26, 0.9);
+    --surface-scrim: rgba(0, 0, 0, 0.5);
+    --surface-press: rgba(255, 255, 255, 0.08);
+
+    --text-primary: #f5f5f7;
+    --text-secondary: #a1a1aa;
+    --text-tertiary: #7c7c86;
+    --text-on-accent: #ffffff;
+
+    --separator: rgba(255, 255, 255, 0.12);
+    --separator-strong: rgba(255, 255, 255, 0.2);
+    --separator-quiet: rgba(255, 255, 255, 0.07);
+
+    --accent: #5b7bff;
+    --accent-press: #8a9fff;
+    --accent-quiet: rgba(91, 123, 255, 0.16);
+    --accent-text: #93a8ff;
+    --focus-ring: #7b93ff;
+
+    --data-sim: #4cc38a;
+    --data-nao: #ff6b5e;
+    --data-ausente: #7c7c86;
+    --data-licenca: #5c5c66;
+    --data-secreto: #9a9aa4;
+    --data-ilegivel: #7c7c86;
+    --data-neutro: #2a2a2e;
+
+    --ramp-0: #14204a;
+    --ramp-1: #1c2c63;
+    --ramp-2: #26397d;
+    --ramp-3: #324699;
+    --ramp-4: #3f56b4;
+    --ramp-5: #4f6ad0;
+    --ramp-6: #6f88ea;
+
+    --shadow-chip: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.45);
+    --shadow-sheet: 0 -1px 0 rgba(255, 255, 255, 0.08), 0 -18px 48px rgba(0, 0, 0, 0.6);
+    --hairline-top: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ============================================================================
+   Preferências do sistema — o design nunca ignora essas três
+   ========================================================================== */
+
+/* movimento: resposta continua, sem deslocamento */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-press: 60ms linear;
+    --motion-hover: 60ms linear;
+    --motion-standard: 160ms linear;
+    --motion-enter: 160ms linear;
+    --motion-exit: 120ms linear;
+    --motion-reverse: 160ms linear;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* transparencia: material vira solido, com contorno para separar */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --surface-chrome: #ffffff;
+    --surface-chrome-strong: #f4f4f7;
+    --surface-sheet: #fafafc;
+    --blur-chrome: 0px;
+    --blur-sheet: 0px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-chrome: #1c1c1e;
+      --surface-chrome-strong: #161618;
+      --surface-sheet: #18181a;
+    }
+  }
+}
+
+/* contraste: fundo quase solido + contorno definido */
+@media (prefers-contrast: more) {
+  :root {
+    --separator: rgba(16, 16, 20, 0.4);
+    --separator-strong: rgba(16, 16, 20, 0.65);
+    --text-secondary: #3a3a44;
+    --text-tertiary: #4c4c57;
+    --surface-chrome: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --separator: rgba(255, 255, 255, 0.42);
+      --separator-strong: rgba(255, 255, 255, 0.66);
+      --text-secondary: #d2d2da;
+      --text-tertiary: #b6b6c0;
+      --surface-chrome: #1c1c1e;
+    }
+  }
+}

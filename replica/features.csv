@@ -1,0 +1,67 @@
+feature,area,priority,original,clone,notes
+Mapa do Brasil com coropleta por estado,home,must,yes,yes,Geometria real dos 27 estados e DF gerada de GeoJSON publico; valores ficticios por camada
+Camadas temáticas do mapa (contas/escolas/obras/dinheiro/votações),mapas,must,yes,yes,Cinco pills com aria-pressed; a camada ativa fica na URL
+Camada do mapa na URL (?assunto=) compartilhável,mapas,must,yes,yes,Validado: ?assunto=escolas marca a camada e sobrevive a recarga
+Drill do mapa para a página do estado,mapa-para-estado,must,yes,yes,Estado clicavel no SVG navega para /uf/:sigla
+Quem me representa por cidade,me representa,must,yes,yes,Combobox ARIA 1.2 + sheet agrupada por esfera
+Quem me representa por estado,me representa,must,yes,yes,Sheet por esfera com grupo Municipio/Estado/Pais
+Quem me representa na esfera federal (Brasília),me representa,must,yes,no,"Presidente, vice, senadores e deputados federais"
+Drill de município dentro da página do estado,uf,must,yes,yes,Lista de municipios do estado leva a /me?cidade=...
+Crachá: cabeçalho de identidade (nome cargo UF partido situação),crachá,must,yes,yes,"Nome, cargo, UF, partido e pílula de situacao"
+Crachá: grade de métricas com travessão para dado ausente,crachá,must,yes,yes,Grade com valor e motivo da ausencia
+Crachá: aviso Faltam N dados neste crachá,crachá,must,yes,yes,Bloco de lacunas lista cada dado ausente e o motivo
+Crachá: abas por ano com Todos,crachá,must,yes,yes,"Tablist ARIA com tabindex movel, setas/Home/End, Enter eEspaco"
+Crachá: painel de votos (sim/não/abstenção/ausência/licença),crachá,must,yes,yes,Barras por categoria com o total da fonte
+Crachá: painel de propostas e o que virou lei,crachá,must,yes,yes,Proposicoes com situação e ano
+Crachá: painel de emendas (autor destino valor),crachá,must,yes,yes,"Emendas com autor, destino e valor"
+Crachá: painel de cota e gastos do gabinete,crachá,must,yes,yes,Cota por ano comnehuma nao publicada explicada
+Crachá: painel de patrimônio declarado,crachá,must,yes,yes,Valor declarado com ano de referencia
+Crachá: painel de campanhas e maiores doadores,crachá,must,yes,yes,Arrecadacao e doadores declarados
+Rodapé de fonte em todo bloco de dado (Fonte: X - atualizado em Y),dados,must,yes,yes,sourceNote em cada bloco com data da atualizacao
+Comparador de 2 a 5 pessoas lado a lado,comparar,must,yes,yes,"Adicionar, remover, limite de 5, tabela sem nota nem ranking"
+Busca (político cidade UF) com resultados agrupados,busca,must,yes,yes,Dialogo com grupos Pessoas/Cidades/Estados; tolera acento e caixa
+Diretório Quem é quem com filtros cargo/UF/partido e A-Z,diretório,must,yes,yes,Filtros e letra por query; foco preservado via data-focus-key
+Avatar com iniciais quando não há foto,componentes,must,yes,yes,"Iniciais em circulo, aria-hidden"
+Página de método (neutralidade presença fonte ausência não é zero),conteúdo,must,yes,yes,"Rejeita nota, ranking, recomendacao e cor de bom/ruim"
+Monitorar uma pessoa (e-mail + código sem senha),conta,should,yes,yes,"E-mail validado, codigo de 6 digitos, reenvio, confirmacao por toast"
+Card social do crachá,crachá,should,yes,partial,Compartilha o link do cracha; falta a imagem de resumo para rede social
+Formulário de sugestão (ideia falta erro outro),sugestão,should,yes,yes,"Quatro tipos, validacao de texto, confirmacao por toast"
+Reportar erro em um bloco de dado,sugestão,should,yes,partial,"O erro sai do cracha inteiro, nao de um bloco isolado"
+Detalhe de partido (história filiados direção),partidos,should,yes,no,
+Eixo ideológico esquerda para direita com nota da pesquisa,partidos,should,yes,no,A nota é da pesquisa citada e não do site
+Diagrama de bancada (uma cadeira = um ponto),bancada,should,yes,yes,Assentos em rampa monocromatica; partido fica como sigla em texto
+Similaridade de votação entre partidos,partidos,should,yes,no,Derivado de votação nominal consolidada
+Visão do estado (bancadas + todo mundo no cargo),uf,should,yes,yes,"Bancada, filtros de cargo e lista de municipios"
+Impostômetro federal (ano estado tributo série mensal),impostos,should,yes,no,Mês ainda não publicado fica vazio com nota explicativa
+Impostômetro: detalhe do estado,impostos,should,yes,no,
+Impostômetro: detalhe do tributo,impostos,should,yes,no,
+Empty state Nenhum destes dados está no site,componentes,should,yes,yes,Estados e cidades sem registro explicam o motivo
+Layout responsivo (sheet no mobile painel lateral no desktop),layout,should,yes,yes,"Validado em 320, 390, 768 e 1280 px sem overflow"
+PWA instalável (manifest + prompt de instalação),plataforma,should,yes,no,
+Modo escuro (prefers-color-scheme + toggle manual),visual,should,yes,partial,O toggle manual ainda falta
+"Alternativas reduced motion, reduced transparency e increased contrast",acessibilidade,should,yes,yes,Movimento reduzido corta a mola; transparencia solida o vidro; contraste reforca separadores
+Navegação por teclado com foco visível,acessibilidade,should,yes,yes,"Skip link, tablist com setas, foco preso em sheet e dialogo"
+Anúncio de rota para leitor de tela (live region),acessibilidade,should,yes,yes,Regiao viva anuncia o titulo de cada tela
+Toast de confirmação transitória,feedback,should,yes,yes,Toast com regiao viva polite
+Rampa de mapa monocromática e segura para daltonismo,visual,should,yes,yes,Sete passos de um matiz; nenhuma corcodifica qualidade politica
+Estado de carregamento e de erro com tentar de novo,estados,should,yes,no,Nao ha estado de carregamento nem de erro com nova tentativa
+Congresso: visão geral com agenda e votações do dia,congresso,could,yes,no,
+Congresso: o que virou lei (8.561 normas com filtros),congresso,could,yes,no,
+Congresso: votação nominal com placar por partido,congresso,could,yes,no,
+STF: pauta do plênio e decisões com voto por ministro,stf,could,yes,no,
+Eleições: hub de lugar cargo ano,eleições,could,yes,no,
+Eleições: resultado por cargo com não eleito,eleições,could,yes,no,
+Eleições: arquivo de apurações ao vivo,eleições,could,yes,no,
+Governos: mandatos lado a lado por escopo,governos,could,yes,no,
+Governos: série anual por mandato,governos,could,yes,no,
+Planos de governo: comparação de trechos do TSE,planos,could,yes,no,
+Cargos: o que cada cargo pode e não pode e quanto custa,cargos,could,yes,no,
+Quem publica: cobertura de dados abertos por cidade,dados abertos,could,yes,no,
+Leitura em voz alta da página (ouvir esta página),acessibilidade,could,yes,no,Leitor de tela no header
+Busca textual própria com relevância e tolerância a acento,busca,could,yes,partial,Tolerancia a acento e caixa resolvidas; falta ranqueamento por relevancia
+Base ingerida de 70.804+ pessoas do original,dados,skip,yes,skip,O clone constrói o próprio pipeline contra as fontes oficiais; copiar a base não é rebuild
+Fotos dos candidatos do TSE,dados,skip,yes,skip,Exige ingestão massiva; v1 usa avatar com iniciais
+Contador próprio de visitas e ranking mais vistos,métricas,skip,yes,skip,Infraestrutura de produto do time deles; o clone não usa cookie nem IP
+Canal do WhatsApp e perfil no Instagram,marcas,skip,yes,skip,Integrações de terceiros
+Marca nome e logo do Politicômetro,marca,skip,yes,skip,O projeto do usuário precisa de identidade própria
+MCP e conteúdo editorial do original (marcos cartão corporativo vídeo),conteúdo,skip,yes,skip,Produção do time deles; o clone pode expor o seu próprio MCP a partir do /mcp original

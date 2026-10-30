@@ -1,0 +1,101 @@
+/* ============================================================================
+   a11y.css — última camada: preferências do sistema
+   ---------------------------------------------------------------------------
+   Este arquivo entra por último de propósito. As regras daqui precisam
+   vencer as regras de layout para valer em qualquer situação, e as
+   preferências do sistema (cores forçadas, menos movimento, menos
+   transparência, mais contraste) têm a palavra final sobre o desenho.
+
+   Regras que dependem só de variáveis (--blur-chrome, --surface-*) continuam
+   em replica/design/tokens.css, porque mexer na variable já resolve.
+
+   ---------------------------------------------------------------------------
+   Menos transparência
+   ---------------------------------------------------------------------------
+   Com "reduced transparency" o material deixa de ser vidro: a superfície
+   fica sólida e ganha um contorno, para que o bloco continue se separando
+   do conteúdo que passa por baixo. As variáveis já são trocadas em
+   replica/design/tokens.css; aqui o que falta é desligar o filtro de
+   desfoque — e o contorno, para a sheet.
+
+   ---------------------------------------------------------------------------
+   Cores forçadas
+   ---------------------------------------------------------------------------
+   Em "forced colors" o sistema assume o controle das cores. Duas coisas
+   precisam de cuidado aqui:
+
+   1. O mapa é a única codificação do valor de cada estado. Se as cores da
+      rampa fossem substituídas pela paleta forçada, os 27 estados virariam
+      a mesma cor e o mapa deixaria de ser legível como dado. Por isso a
+      rampa é preservada com "forced-color-adjust: none" — e o contorno dos
+      estados, o foco e a seleção passam a usar cores do sistema
+      (CanvasText, Highlight), que continuam visíveis em qualquer tema.
+
+   2. A bancada usa a mesma rampa para os assentos. A sigla do partido é
+      sempre texto, então nenhuma identidade se perde; ainda assim o
+      contorno em CanvasText mantém cada assento visível.
+
+   O resto da interface (texto, botões, campos, tabelas) acompanha a paleta
+   forçada sem nenhuma regra extra: é o comportamento padrão do navegador.
+   ========================================================================== */
+
+@media (prefers-reduced-transparency: reduce) {
+  /* O vidro vira sólido: sem desfoque e com contorno, para o bloco
+     continuar se separando do conteúdo que passa por baixo. */
+  .chrome,
+  .sheet {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .sheet {
+    border: 1px solid var(--separator);
+  }
+}
+
+@media (forced-colors: active) {
+  /* O anel de foco precisa ser da paleta do sistema, não da marca. */
+  :focus-visible {
+    outline-color: Highlight;
+  }
+
+  /* Sem sombra: em modo forçado a sombra vira um borrão sem sentido. */
+  .map__svg {
+    filter: none;
+  }
+
+  .map__state path {
+    forced-color-adjust: none;
+    stroke: CanvasText;
+    stroke-width: 1.1;
+  }
+
+  .map__state:hover path {
+    opacity: 1;
+    stroke: Highlight;
+    stroke-width: 2;
+  }
+
+  .map__state:focus-visible path {
+    stroke: Highlight;
+    stroke-width: 3;
+  }
+
+  .legend__scale i,
+  .legend__nodata {
+    forced-color-adjust: none;
+    border: 1px solid CanvasText;
+  }
+
+  .bancada__seat i {
+    forced-color-adjust: none;
+    border: 1px solid CanvasText;
+  }
+
+  /* A borda das "pílulas" precisa continuar aparecendo: a diferença entre
+     "em exercício" e "mandato interrompido" está no texto, mas o contorno
+     ajuda a separar visualmente os blocos. */
+  .pill {
+    border-color: CanvasText;
+  }
+}
