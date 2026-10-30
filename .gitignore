@@ -19,6 +19,9 @@ npm-debug.log*
 .env.*
 !.env.example
 
+# Credencial do túnel na VPS (copiada para ./tunnel/credentials.json)
+tunnel/
+
 # Banco de dados local (recriado por server/seed.py)
 data/*.sqlite
 data/*.sqlite-journal

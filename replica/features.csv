@@ -38,6 +38,16 @@ Impostômetro: detalhe do tributo,impostos,should,yes,no,
 Empty state Nenhum destes dados está no site,componentes,should,yes,yes,Estados e cidades sem registro explicam o motivo
 Layout responsivo (sheet no mobile painel lateral no desktop),layout,should,yes,yes,"Validado em 320, 390, 768 e 1280 px sem overflow"
 PWA instalável (manifest + prompt de instalação),plataforma,should,yes,no,
+Banco SQLite normalizado como fonte de verdade (27 tabelas e lacunas estruturadas),infra,should,yes,yes,NULL com motivo; nunca zero para dado ausente
+API JSON de mesma origem com leitura e escrita (sem CORS),infra,should,yes,yes,Rotas de leitura mais monitoramento e sugestao de correcao
+Front-end API-first com fallback determinístico para o dataset embutido,infra,should,yes,yes,Redesenho silencioso quando o dado definitivo chega
+Cache sem armadilha (no-store nos módulos e no-cache com ETag no HTML),infra,should,yes,yes,Publicar passa a valer na hora depois de um deploy
+Publicação em contêiner próprio com volume e rede Docker próprios,infra,should,yes,yes,Imagem unica; recriar a imagem nao leva o banco junto
+Publicação pública por túnel de saída em hostname exclusivo do projeto,infra,should,yes,yes,https://transparenciapolicita.luzempresarial.com.br sem porta aberta no firewall
+Deploy idempotente com health check e credencial fora do git,infra,should,yes,yes,deploy.sh sincroniza constrói sobe e confere /api/health
+Teste automatizado de paridade entre banco e front-end,infra,should,yes,yes,make paridade compara entidades lacunas valores e historico
+Teste de API viva (muda o banco e confere a tela),infra,should,yes,yes,make api-viva prova que a tela mostra o valor do banco e nao o dataset embutido
+Smoke de navegador com 47 telas em 23 rotas,infra,should,yes,yes,make smoke; valida estatica rota console e requisicoes falhas
 Modo escuro (prefers-color-scheme + toggle manual),visual,should,yes,partial,O toggle manual ainda falta
 "Alternativas reduced motion, reduced transparency e increased contrast",acessibilidade,should,yes,yes,Movimento reduzido corta a mola; transparencia solida o vidro; contraste reforca separadores
 Navegação por teclado com foco visível,acessibilidade,should,yes,yes,"Skip link, tablist com setas, foco preso em sheet e dialogo"

@@ -4,10 +4,19 @@
 # Projeto independente: este bloco não tem relação com o gparla e não
 # precisa ser combinado com o Caddyfile de nenhum outro projeto da VPS.
 #
-# Aponte um registro DNS A para o IP da VPS e cole o bloco abaixo no Caddy
-# que quiser usar. O app responde em 127.0.0.1:8080 (porta publicada pelo
+# Escolha UM dos dois caminhos abaixo:
+#
+#   1. TÚNEL (o que está no ar hoje) — Cloudflare Tunnel. O app não
+#      precisa de porta liberada no firewall: o cloudflared abre a
+#      conexão de dentro para fora. Configuração em deploy/tunnel/config.yml.
+#
+#   2. REVERSE PROXY com Caddy — se você preferir terminar TLS no próprio
+#      servidor. Aponte um registro DNS A para o IP da VPS e cole o bloco
+#      abaixo no Caddy que quiser usar.
+#
+# O app responde em 127.0.0.1:8090 na VPS (porta publicada pelo
 # docker-compose deste projeto), então não é preciso compartilhar rede
-# Docker com o Caddy.
+# Docker com o Caddy nem com nenhum outro serviço.
 #
 # Para publicar o app em um subdiretório em vez da raiz, troque
 # TP_BASE_PATH=/ por TP_BASE_PATH=/transparenciapolicita/ no .env da VPS e
@@ -21,7 +30,7 @@
 #     encode gzip zstd
 #
 #     # A API e o app são a mesma origem: nada de CORS.
-#     reverse_proxy 127.0.0.1:8080
+#     reverse_proxy 127.0.0.1:8090
 #
 #     log {
 #         output file /var/log/caddy/transparenciapolicita.log
@@ -39,7 +48,7 @@
 #     # para o contêiner, que o usa para montar os endereços.
 #     @transparenciapolicita path /transparenciapolicita /transparenciapolicita/*
 #     handle @transparenciapolicita {
-#         reverse_proxy 127.0.0.1:8080
+#         reverse_proxy 127.0.0.1:8090
 #     }
 #
 #     log {
@@ -47,3 +56,24 @@
 #         format json
 #     }
 # }
+
+
+# --------------------------------------------------------------------- TÚNEL
+#
+# Configuração equivalente no dashboard da Cloudflare (Zero Trust):
+#
+#   Tunnels > transparenciapolicita > Public Hostnames
+#     hostname: transparenciapolicita.seudominio.com.br
+#     service:   http://transparenciapolicita:8080
+#
+# E o registro DNS correspondente:
+#
+#   tipo:    CNAME
+#   nome:    transparenciapolicita
+#   destino: 95fc371a-75c6-4337-a2b0-8766e4dd549c.cfargotunnel.com
+#   proxy:   sim (nuvem laranja)
+#
+# Na VPS, o serviço do túnel vive em ./tunnel/ e sobe com o perfil:
+#
+#   cd /docker/transparenciapolicita
+#   docker compose --profile tunnel up -d

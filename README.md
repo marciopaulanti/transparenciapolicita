@@ -85,9 +85,62 @@ próprios:
 ./deploy/deploy.sh /caminho/do/codigo   # sincroniza, constrói, sobe e confere a saúde
 ```
 
-O `deploy/Caddyfile.transparenciapolicita` tem o bloco do proxy reverso pronto para
-um domínio próprio. O app responde em `127.0.0.1:8090` na VPS, o que permite ao
-proxy falar com ele sem compartilhar rede Docker com nenhum outro serviço.
+### Endereço público
+
+O projeto está publicado em:
+
+```
+https://transparenciapolicita.luzempresarial.com.br
+```
+
+Esse endereço é servido por um **túnel de saída** (Cloudflare Tunnel), não por porta
+aberta no firewall da VPS. O `cloudflared` roda em contêiner na rede Docker do
+próprio projeto, conecta de dentro para fora e entrega o tráfego no
+`http://transparenciapolicita:8080` — ou seja, o app nunca sai da rede dele e o
+firewall da VPS não precisa abrir nada além do que já estava aberto.
+
+Por que túnel e não uma porta alta? A borda do provedor filtra portas fora do
+conjunto liberado (80, 443 e as liberadas no painel), então a porta 8090 respondia
+de dentro da VPS e expirava na hora de chegar pela internet. O túnel resolve isso
+sem depender de regra de firewall e sem depender de IP dedicado.
+
+Arquivos:
+
+```
+deploy/tunnel/config.yml      hostname público, destino no app e regra de captura
+tunnel/credentials.json       segredo do túnel — só na VPS, nunca no git
+```
+
+O registro DNS correspondente é um CNAME proxiado para
+`95fc371a-75c6-4337-a2b0-8766e4dd549c.cfargotunnel.com`.
+
+### Proxy alternativo (Caddy)
+
+O `deploy/Caddyfile.transparenciapolicita` traz o bloco do proxy reverso pronto
+para quem preferir terminar TLS no próprio servidor. O app responde em
+`127.0.0.1:8090` na VPS, o que permite ao proxy falar com ele sem compartilhar
+rede Docker com nenhum outro serviço.
+
+### Operação na VPS
+
+```bash
+ssh root@179.197.228.218
+cd /docker/transparenciapolicita
+
+docker compose ps                             # estado dos contêineres
+docker compose logs -f transparenciapolicita  # log do app
+docker compose --profile tunnel logs -f       # log do túnel
+curl -s http://127.0.0.1:8090/api/health      # health check
+```
+
+Recomposição do túnel (quando o hostname ou o destino mudam):
+
+```bash
+./deploy/deploy.sh /caminho/do/codigo
+```
+
+O `deploy.sh` sincroniza, reconstrói a imagem, sobe o app, sobe o túnel quando a
+credencial está na VPS e confere a saúde em `127.0.0.1:8090/api/health`.
 
 ## O laço central
 

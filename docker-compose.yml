@@ -1,16 +1,22 @@
 # ============================================================================
 # Transparência Política — stack de produção (projeto independente)
 # ---------------------------------------------------------------------------
-# Um contêiner só: o app (estáticos + API) na porta interna 8080.
+# Dois serviços, nenhum compartilhado: o app (estáticos + API) na porta
+# interna 8080 e, opcionalmente, o túnel que publica o app na internet.
 #
 # Este projeto é independente do gparla: rede Docker própria, volume próprio
 # e nenhum vínculo com os outros serviços da VPS. O contêiner publica a
-# porta 8080 no host, então qualquer proxy (o Caddy deste projeto, o Caddy
-# de outro projeto ou um túnel) chega nele por 127.0.0.1:8080 — sem
+# porta 8090 no host, então qualquer proxy (o Caddy deste projeto, um proxy
+# de outro projeto ou um túnel) chega nele por 127.0.0.1:8090 — sem
 # precisar compartilhar rede Docker com ninguém.
 #
 # O banco fica em volume nomeado, fora do contêiner: recriar a imagem não
 # pode levar os dados junto.
+#
+# O serviço "tunnel" fica atrás do perfil "tunnel" de propósito: ele só
+# entra se existir ./tunnel/credentials.json (segredo que nunca vai para o
+# git). Sem o arquivo, a stack sobe só o app — o proxy público continua
+# podendo ser um Caddy ou um reverse proxy de terceiros.
 # ============================================================================
 
 services:
@@ -34,6 +40,30 @@ services:
       TZ: "${TZ:-America/Sao_Paulo}"
     volumes:
       - transparenciapolicita-dados:/srv/data
+    networks:
+      - transparenciapolicita
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Túnel de saída: o app não precisa de porta liberada no firewall para
+  # chegar à internet. O cloudflared abre a conexão de dentro para fora e o
+  # hostname público é resolvido pela borda da Cloudflare.
+  tunnel:
+    image: cloudflare/cloudflared:2026.10.0
+    container_name: transparenciapolicita-tunnel
+    restart: unless-stopped
+    profiles:
+      - tunnel
+    depends_on:
+      - transparenciapolicita
+    command: tunnel --config /etc/cloudflared/config.yml run
+    volumes:
+      # config.yml vem do repositório (deploy/tunnel/config.yml);
+      # credentials.json é segredo e fica só na VPS.
+      - ./tunnel:/etc/cloudflared:ro
     networks:
       - transparenciapolicita
     logging:
