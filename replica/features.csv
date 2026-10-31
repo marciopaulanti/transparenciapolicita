@@ -43,6 +43,7 @@ API JSON de mesma origem com leitura e escrita (sem CORS),infra,should,yes,yes,R
 Front-end API-first com fallback determinístico para o dataset embutido,infra,should,yes,yes,Redesenho silencioso quando o dado definitivo chega
 Cache sem armadilha (no-store nos módulos e no-cache com ETag no HTML),infra,should,yes,yes,Publicar passa a valer na hora depois de um deploy
 Publicação em contêiner próprio com volume e rede Docker próprios,infra,should,yes,yes,Imagem unica; recriar a imagem nao leva o banco junto
+Publicação pública por porta própria na VPS,infra,should,yes,partial,deploy/publicar-porta.sh abre a porta no UFW e no DOCKER-USER e cria a regra no firewall da Hostinger; falta o token da Hostinger para a regra da borda
 Publicação pública por túnel de saída em hostname exclusivo do projeto,infra,should,yes,partial,deploy/publicar-tunel.sh cria o túnel o DNS e sobe na VPS; falta o token da conta do dono e a zona do hostname
 Deploy idempotente com health check e credencial fora do git,infra,should,yes,yes,deploy.sh sincroniza constrói sobe e confere /api/health
 Teste automatizado de paridade entre banco e front-end,infra,should,yes,yes,make paridade compara entidades lacunas valores e historico

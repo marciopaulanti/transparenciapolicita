@@ -4,7 +4,7 @@
 # `make ajuda` lista o que dá para fazer.
 # ============================================================================
 
-.PHONY: ajuda instalar dados rodar smoke smoke-subpath paridade api-viva mapa build edge tunel url limpar
+.PHONY: ajuda instalar dados rodar smoke smoke-subpath paridade api-viva mapa build edge tunel porta url limpar
 
 PY      ?= python3
 NODE    ?= node
@@ -49,6 +49,9 @@ edge: ## Publica o proxy de borda e restringe a porta da VPS
 
 tunel: ## Publica o túnel de saída (precisa de CLOUDFLARE_API_TOKEN e TP_HOSTNAME)
 	./deploy/publicar-tunel.sh
+
+porta: ## Abre a porta do app na VPS e no firewall da Hostinger (precisa de HOSTINGER_API_TOKEN)
+	./deploy/publicar-porta.sh
 
 url: ## Mostra o endereço público e confere se está de pé
 	@NOME=$$(sed -n 's/^[[:space:]]*- hostname: //p' deploy/tunnel/config.yml 2>/dev/null | head -1); \

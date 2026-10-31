@@ -88,15 +88,28 @@ próprios:
 ### Endereço público
 
 O app, a API e o banco vivem **inteiros na VPS**, no contêiner `transparenciapolicita`,
-na rede e no volume próprios do projeto. A Cloudflare não hospeda nada disso: ela é
-só a porta de entrada pública, porque a borda da Hostinger só encaminha 80/443/8088 e
-as portas 80 e 443 da VPS já estão ocupadas pelo outro projeto (que este repositório
-não toca).
+na rede e no volume próprios do projeto. Nenhuma parte do projeto roda fora dela.
 
-O caminho escolhido é o **túnel de saída**: o `cloudflared` roda em contêiner na
-rede Docker do próprio projeto, conecta de dentro para fora e a borda entrega o
-tráfego no `http://transparenciapolicita:8080`. Nenhuma porta do app é aberta no
-firewall da VPS, e o TLS fica por conta da Cloudflare.
+O caminho mais direto é a **porta própria**: a borda da Hostinger só encaminha as
+portas que têm regra no firewall da VPS (é por isso que a 8088, de outro projeto,
+passa e a 8090 não), então é preciso liberar a 8090 uma vez.
+
+```bash
+HOSTINGER_API_TOKEN=<token da Hostinger> ./deploy/publicar-porta.sh
+```
+
+O script abre a porta dentro da VPS (UFW e cadeia `DOCKER-USER`, porque o Docker
+publica por DNAT e escapa do UFW), cria a mesma regra no firewall da VPS no painel da
+Hostinger, sincroniza e confere a resposta de fora. O endereço fica
+`http://179.197.228.218:8090` — HTTP puro, com a porta na URL, sem TLS.
+
+Se a única regra no painel for preferida, é a mesma coisa em 30 segundos: hPanel →
+VPS → Security → Firewall → *Add rule*: TCP, porta 8090, origem *Any*.
+
+Quando o endereço importa mais que o HTTPS, o caminho alternativo é o **túnel de
+saída**: o `cloudflared` roda em contêiner na rede do próprio projeto, sai para a
+internet e a borda da Cloudflare devolve o tráfego no `http://transparenciapolicita:8080`.
+Nenhuma porta do app fica aberta e o TLS fica na borda.
 
 ```bash
 CLOUDFLARE_API_TOKEN=<token da sua conta> \
@@ -104,26 +117,23 @@ TP_HOSTNAME=transparenciapolicita.seudominio.com.br \
 ./deploy/publicar-tunel.sh
 ```
 
-O script cria o túnel, publica a configuração de entrada, cria o registro CNAME do
-hostname, sobe o contêiner na VPS e confere a resposta pública. O token precisa das
-permissões *Account → Cloudflare Tunnel → Edit* e *Zone → DNS → Edit*, na **sua**
-conta — a zona do hostname precisa estar nela.
-
-Duas alternativas, caso o túnel não sirva:
+O token precisa das permissões *Account → Cloudflare Tunnel → Edit* e *Zone → DNS →
+Edit*, na conta do dono do hostname.
 
 | Caminho | Exige | Endereço |
 |---|---|---|
-| Túnel de saída | token de túnel + DNS na sua conta | `https://seu-hostname` com TLS, sem porta aberta |
-| Porta direta | abrir TCP 8090 no firewall da VPS (Hostinger) | `http://179.197.228.218:8090`, HTTP puro |
-| Worker de borda | token de Workers + DNS na sua conta | `https://seu-hostname`, com a borda no meio |
+| Porta direta | regra TCP 8090 no firewall da Hostinger | `http://179.197.228.218:8090`, HTTP puro |
+| Túnel de saída | token de túnel + DNS na conta do dono | `https://<hostname>` com TLS, sem porta aberta |
+| Worker de borda | token de Workers + DNS na conta do dono | `https://<hostname>`, com a borda no meio |
 
 Arquivos:
 
 ```
-deploy/publicar-tunel.sh      publica o túnel: cria, configura, DNS, sobe e confere
-deploy/tunnel/config.yml      configuração do túnel (hostname, destino, captura)
+deploy/publicar-porta.sh      abre a porta na VPS e no firewall da Hostinger
+deploy/publicar-tunel.sh      cria o túnel, publica a entrada, cria o CNAME e confere
+deploy/publicar-edge.sh       publica o proxy de borda (Worker) e restringe a porta
+deploy/tunnel/config.yml      modelo do túnel; o script gera a versão real
 deploy/worker/worker.js       proxy de borda (Worker), caminho alternativo
-deploy/publicar-edge.sh       publica o proxy de borda e restringe a porta da VPS
 deploy/deploy.sh              sincroniza o código, constrói a imagem e sobe o app
 tunnel/credentials.json       segredo do túnel — só na VPS, nunca no git
 ```
