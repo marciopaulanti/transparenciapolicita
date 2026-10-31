@@ -13,7 +13,7 @@
 # nenhuma dependência de outro projeto da VPS.
 #
 # Variáveis de ambiente opcionais:
-#     TP_SSH          usuário@host da VPS           (padrão root@179.197.228.218)
+#     TP_SSH          alias ssh da VPS             (padrão hostinger)
 #     TP_DESTINO      pasta da stack na VPS          (padrão /docker/transparenciapolicita)
 #     TP_PORTA        porta do app no host           (padrão 8090)
 #     TP_URL          URL público, só para imprimir (padrão o hostname do túnel)
@@ -29,7 +29,7 @@ ORIGEM="${1:?informe o caminho local do código}"
 SO_CODIGO="${2:-}"
 
 DESTINO="${TP_DESTINO:-/docker/transparenciapolicita}"
-USUARIO_SSH="${TP_SSH:-root@179.197.228.218}"
+USUARIO_SSH="${TP_SSH:-hostinger}"
 PORTA_HOST="${TP_PORTA:-8090}"
 COMPOSE="${DESTINO}/docker-compose.yml"
 ARQUIVO_ENV="${DESTINO}/.env"
@@ -87,7 +87,7 @@ if [ -f deploy/tunnel/config.yml ]; then
 fi
 
 if [ ! -f tunnel/credentials.json ] && [ -n "${TP_TUNNEL_CREDENTIALS:-}" ]; then
-  printf '%s' "${TP_TUNNEL_CREDENTIALS}" | base64 -d > tunnel/credentials.json
+  printf '%s' "${TP_TUNNEL_CREDENTIALS:-}" | base64 -d > tunnel/credentials.json
   chmod 644 tunnel/credentials.json
   echo "    tunnel/credentials.json criado a partir de TP_TUNNEL_CREDENTIALS"
 fi
