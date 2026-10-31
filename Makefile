@@ -55,13 +55,17 @@ porta: ## Abre a porta do app na VPS e no firewall da Hostinger (precisa de HOST
 
 url: ## Mostra o endereço público e confere se está de pé
 	@NOME=$$(sed -n 's/^[[:space:]]*- hostname: //p' deploy/tunnel/config.yml 2>/dev/null | head -1); \
-	if [ -n "$$NOME" ]; then \
+	IP=$$(ssh -o ConnectTimeout=15 hostinger 'curl -sS -m 8 https://api.ipify.org || hostname -I | awk "{print \$$1}"' 2>/dev/null | tr -d '\r\n '); \
+	if [ -n "$$NOME" ] && [ "$$NOME" != "<HOSTNAME>" ]; then \
 		echo "https://$$NOME"; \
 		curl -sS -m 30 -o /dev/null -w "home    %{http_code}\n" "https://$$NOME/"; \
 		curl -sS -m 30 -w "health  %{http_code}  " "https://$$NOME/api/health"; echo; \
+	elif [ -n "$$IP" ]; then \
+		echo "http://$$IP:8090"; \
+		curl -sS -m 30 -o /dev/null -w "home    %{http_code}\n" "http://$$IP:8090/"; \
+		curl -sS -m 30 -w "health  %{http_code}  " "http://$$IP:8090/api/health"; echo; \
 	else \
-		echo "sem hostname de tunel em deploy/tunnel/config.yml"; \
-		echo "roda: make tunel (com CLOUDFLARE_API_TOKEN e TP_HOSTNAME)"; \
+		echo "sem tunnel configurado (deploy/tunnel/config.yml) e sem IP da VPS"; \
 	fi
 
 limpar: ## Remove o banco local e as sobras de build
