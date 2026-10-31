@@ -10,9 +10,16 @@
 # da Cloudflare entrega o tráfego. Por isso o projeto não precisa de porta
 # liberada no firewall da VPS nem de IP público em porta alta.
 #
+# ESTE É O CAMINHO ALTERNATIVO, NÃO O CAMINHO NO AR.
+# Hoje o endereço publico do projeto é um domínio customizado de Worker
+# (deploy/worker/worker.js), que entrega o mesmo app pela borda. Para usar o
+# túnel, o registro DNS de transparenciapolicita.luzempresarial.com.br
+# precisa apontar para <TUNNEL_ID>.cfargotunnel.com no lugar do A que a
+# Cloudflare cria para o domínio customizado — e isso exige permissão de
+# escrita em DNS na zona.
+#
 # Para trocar o hostname ou o destino, edite o bloco ingress abaixo e rode
-# de novo o deploy. Depois de pronto, o registro DNS é um CNAME para
-# <TUNNEL_ID>.cfargotunnel.com, proxiado pela Cloudflare.
+# de novo o deploy.
 # ============================================================================
 
 tunnel: 95fc371a-75c6-4337-a2b0-8766e4dd549c

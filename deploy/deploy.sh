@@ -19,6 +19,8 @@
 #     TP_URL          URL público, só para imprimir (padrão o hostname do túnel)
 #     TP_TUNNEL_CREDENTIALS  credencial do túnel em base64, usada só se o
 #                            credentials.json ainda não existir na VPS
+#     TP_TUNNEL=1            sobe também o túnel (caminho alternativo; o
+#                            caminho no ar é o domínio customizado do Worker)
 # ============================================================================
 
 set -euo pipefail
@@ -107,8 +109,11 @@ ssh "${USUARIO_SSH}" "cd ${DESTINO} && docker compose build --pull"
 echo "==> Subindo o serviço"
 ssh "${USUARIO_SSH}" "cd ${DESTINO} && docker compose up -d --remove-orphans"
 
-# O túnel só entra se houver credencial na VPS.
-ssh "${USUARIO_SSH}" "cd ${DESTINO} && if [ -f tunnel/credentials.json ]; then docker compose --profile tunnel up -d; fi"
+# O túnel é o caminho alternativo: só entra se for pedido explicitamente.
+# O caminho no ar é o domínio customizado do Worker (deploy/publicar-edge.sh).
+if [ "${TP_TUNNEL:-0}" = "1" ]; then
+  ssh "${USUARIO_SSH}" "cd ${DESTINO} && if [ -f tunnel/credentials.json ]; then docker compose --profile tunnel up -d; else echo '    sem tunnel/credentials.json — o túnel não sobe'; fi"
+fi
 
 # ------------------------------------------------------------------ saúde --
 

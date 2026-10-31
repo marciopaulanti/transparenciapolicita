@@ -87,56 +87,50 @@ próprios:
 
 ### Endereço público
 
-O projeto responde hoje em:
+O projeto está publicado no endereço próprio, no domínio do projeto:
 
 ```
-https://transparenciapolicita-edge.juliana-da-luz-oliveira.workers.dev
+https://transparenciapolicita.luzempresarial.com.br
 ```
 
-Esse endereço é servido por um **proxy de borda** (Cloudflare Worker) que repassa
-consulta e resposta para a VPS, sem tocar em texto e sem guardar estado. O hostname é
-exclusivo do projeto, o TLS é da Cloudflare e a resposta é a mesma do app.
+Esse endereço é um **domínio customizado de Worker** na Cloudflare: a borda
+termina o TLS e entrega a requisição ao Worker `transparenciapolicita-edge`, que é um
+proxy transparente — repassa consulta e resposta para a VPS sem tocar em texto e sem
+guardar estado. Quem chama continua vendo o app e a API do servidor, com o mesmo
+endereço de base (`/`).
 
-O **endereço próprio do domínio ainda não está no ar**, porque depende de um registro
-DNS que só pode ser criado no painel da Cloudflare: a credencial disponível para a
-automação lê e escreve Workers, mas não tem a permissão de DNS da zona. O registro é
-este, e é o único passo que falta:
+Do outro lado, a VPS entrega o app em `127.0.0.1:8090` dentro da rede Docker do
+próprio projeto. A porta 8090 só aceita conexão vinda das faixas públicas da
+Cloudflare: o Docker publica a porta por DNAT e por isso escapa do UFW, então o filtro
+fica na cadeia `DOCKER-USER`, aplicada pelo `deploy/publicar-edge.sh`.
 
-| Campo | Valor |
-| --- | --- |
-| Tipo | `CNAME` |
-| Nome | `transparenciapolicita` |
-| Alvo | `95fc371a-75c6-4337-a2b0-8766e4dd549c.cfargotunnel.com` |
-| Proxy | ligado (nuvem laranja) |
-
-Feito o registro, o mesmo hostname passa a responder pelo **túnel de saída**
-(Cloudflare Tunnel), que é o caminho definitivo: o `cloudflared` roda em contêiner na
-rede Docker do próprio projeto, conecta de dentro para fora e entrega o tráfego no
-`http://transparenciapolicita:8080`. O túnel não depende de porta liberada no firewall
-da VPS nem de IP dedicado.
-
-Por que túnel e não uma porta alta? A borda do provedor filtra portas fora do conjunto
-liberado (80, 443 e as liberadas no painel), então a porta 8090 respondia de dentro da
-VPS e expirava na hora de chegar pela internet. O proxy de borda existe só porque o
-registro DNS acima ainda não foi feito — ele resolve o mesmo problema pelo outro lado
-da borda, sem depender do painel.
+O **túnel de saída** (Cloudflare Tunnel) continua versionado como caminho alternativo,
+em `deploy/tunnel/config.yml`. Ele entrega o mesmo hostname sem nenhuma porta aberta,
+mas exige que o registro DNS aponte para `<TUNNEL_ID>.cfargotunnel.com` no lugar do
+registro que a Cloudflare cria para o domínio customizado — ou seja, exige permissão de
+escrita em DNS na zona, que a credencial de automação não tem. Para usá-lo:
+`TP_TUNNEL=1 ./deploy/deploy.sh /caminho/do/codigo`.
 
 Arquivos:
 
 ```
-deploy/tunnel/config.yml      hostname público, destino no app e regra de captura
-deploy/worker/worker.js       proxy de borda (Worker) usado enquanto o DNS não existe
+deploy/worker/worker.js       proxy de borda (Worker) que serve o hostname do projeto
 deploy/publicar-edge.sh       publica o proxy e restringe a porta da VPS
+deploy/tunnel/config.yml      caminho alternativo: hostname, destino e regra de captura
 tunnel/credentials.json       segredo do túnel — só na VPS, nunca no git
 ```
-
-A porta 8090 da VPS só aceita conexão vinda das faixas públicas da Cloudflare: o
-Docker publica a porta por DNAT e por isso escapa do UFW, então o filtro fica na cadeia
-`DOCKER-USER`.
 
 ```bash
 ./deploy/publicar-edge.sh      # publica o proxy e reaplica o filtro da VPS
 ```
+
+**Dois scripts de terceiros são barrados pela CSP.** A zona tem Web Analytics e
+JavaScript Detection ligados, e a Cloudflare injeta os dois no HTML depois que a
+resposta sai do Worker — a CSP do projeto (`script-src 'self'`) bloqueia os dois, e o
+console mostra o aviso do bloqueio. O projeto não usa cookie nem rastreia IP, então a
+correção é desligar os dois recursos no painel da zona (Statistics → Web Analytics e
+Speed → Optimization → JavaScript Detection); o proxy também remove o beacon do HTML
+que ele consegue alcançar, mas a injeção da borda acontece depois do proxy.
 
 ### Proxy alternativo (Caddy)
 

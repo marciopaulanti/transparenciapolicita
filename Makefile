@@ -4,7 +4,7 @@
 # `make ajuda` lista o que dá para fazer.
 # ============================================================================
 
-.PHONY: ajuda instalar dados rodar smoke smoke-subpath paridade api-viva mapa build edge limpar
+.PHONY: ajuda instalar dados rodar smoke smoke-subpath paridade api-viva mapa build edge url limpar
 
 PY      ?= python3
 NODE    ?= node
@@ -47,11 +47,10 @@ build: ## Constrói a imagem de produção
 edge: ## Publica o proxy de borda e restringe a porta da VPS
 	./deploy/publicar-edge.sh
 
-dns: ## Mostra o registro DNS que falta para o hostname próprio
-	@echo "tipo    CNAME"
-	@echo "nome    transparenciapolicita"
-	@echo "alvo    95fc371a-75c6-4337-a2b0-8766e4dd549c.cfargotunnel.com"
-	@echo "proxy   ligado (nuvem laranja)"
+url: ## Mostra o endereço público e confere se está de pé
+	@echo "https://transparenciapolicita.luzempresarial.com.br"
+	@curl -sS -m 30 -o /dev/null -w "home    %{http_code}\n" https://transparenciapolicita.luzempresarial.com.br/
+	@curl -sS -m 30 -w "health  %{http_code}  " https://transparenciapolicita.luzempresarial.com.br/api/health; echo
 
 limpar: ## Remove o banco local e as sobras de build
 	rm -rf data/*.sqlite data/*.sqlite-shm data/*.sqlite-wal

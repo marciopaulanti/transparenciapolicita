@@ -41,6 +41,11 @@ const CABECALHOS_IGNORADOS = new Set([
   'accept-encoding',
 ]);
 
+// A Cloudflare injeta um beacon de Web Analytics no HTML de toda página da
+// zona. Aqui ele é removido antes de responder: o projeto não usa cookie nem
+// rastreia IP, e o beacon era a única coisa violando a CSP (script-src 'self').
+const BEACON_ANALYTICS = /<script[^>]*cloudflareinsights\.com[\s\S]*?<\/script>/gi;
+
 function semHop(cabecalhos) {
   const saida = new Headers();
   for (const [chave, valor] of cabecalhos) {
@@ -80,6 +85,17 @@ export default {
 
     const cabecalhos = semHop(resposta.headers);
     cabecalhos.set('x-transparenciapolicita-edge', 'worker');
+
+    const tipo = (resposta.headers.get('content-type') || '').toLowerCase();
+    if (tipo.includes('text/html')) {
+      const html = (await resposta.text()).replace(BEACON_ANALYTICS, '');
+      return new Response(html, {
+        status: resposta.status,
+        statusText: resposta.statusText,
+        headers: cabecalhos,
+      });
+    }
+
     return new Response(resposta.body, {
       status: resposta.status,
       statusText: resposta.statusText,

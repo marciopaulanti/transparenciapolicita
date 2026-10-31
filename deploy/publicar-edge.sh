@@ -130,4 +130,4 @@ case "${ACAO}" in
 esac
 
 echo "==> Pronto. A borda responde em:"
-echo "    https://${WORKER_NOME}.juliana-da-luz-oliveira.workers.dev"
+echo "    https://transparenciapolicita.luzempresarial.com.br"
