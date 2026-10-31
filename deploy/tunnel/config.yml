@@ -3,33 +3,31 @@
 # ---------------------------------------------------------------------------
 # Este arquivo vai para a VPS como ./tunnel/config.yml (o compose monta
 # ./tunnel em /etc/cloudflared). O segredo do túnel fica no
-# ./tunnel/credentials.json, que NUNCA entra no git — é criado na VPS com
-# o token do túnel.
+# ./tunnel/credentials.json, que NUNCA entra no git.
+#
+# ESTE ARQUIVO É UM MODELO. O deploy/publicar-tunel.sh é quem gera a versão
+# real, com o túnel e o hostname da SUA conta:
+#
+#   CLOUDFLARE_API_TOKEN=<token> \
+#   TP_HOSTNAME=transparenciapolicita.seudominio.com.br \
+#   ./deploy/publicar-tunel.sh
 #
 # O túnel é de saída: o cloudflared conecta de dentro para fora e a borda
 # da Cloudflare entrega o tráfego. Por isso o projeto não precisa de porta
 # liberada no firewall da VPS nem de IP público em porta alta.
 #
-# ESTE É O CAMINHO ALTERNATIVO, NÃO O CAMINHO NO AR.
-# Hoje o endereço publico do projeto é um domínio customizado de Worker
-# (deploy/worker/worker.js), que entrega o mesmo app pela borda. Para usar o
-# túnel, o registro DNS de transparenciapolicita.luzempresarial.com.br
-# precisa apontar para <TUNNEL_ID>.cfargotunnel.com no lugar do A que a
-# Cloudflare cria para o domínio customizado — e isso exige permissão de
-# escrita em DNS na zona.
-#
 # Para trocar o hostname ou o destino, edite o bloco ingress abaixo e rode
 # de novo o deploy.
 # ============================================================================
 
-tunnel: 95fc371a-75c6-4337-a2b0-8766e4dd549c
+tunnel: <ID_DO_TUNEL>
 credentials-file: /etc/cloudflared/credentials.json
 no-autoupdate: true
 
 ingress:
   # Hostname público do projeto. O registro DNS dele aponta para este
   # túnel; o app responde na rede Docker do próprio projeto.
-  - hostname: transparenciapolicita.luzempresarial.com.br
+  - hostname: <HOSTNAME>
     service: http://transparenciapolicita:8080
 
   # Regra de captura: qualquer outro Host cai no mesmo app.

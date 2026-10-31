@@ -87,50 +87,49 @@ próprios:
 
 ### Endereço público
 
-O projeto está publicado no endereço próprio, no domínio do projeto:
+O app, a API e o banco vivem **inteiros na VPS**, no contêiner `transparenciapolicita`,
+na rede e no volume próprios do projeto. A Cloudflare não hospeda nada disso: ela é
+só a porta de entrada pública, porque a borda da Hostinger só encaminha 80/443/8088 e
+as portas 80 e 443 da VPS já estão ocupadas pelo outro projeto (que este repositório
+não toca).
 
+O caminho escolhido é o **túnel de saída**: o `cloudflared` roda em contêiner na
+rede Docker do próprio projeto, conecta de dentro para fora e a borda entrega o
+tráfego no `http://transparenciapolicita:8080`. Nenhuma porta do app é aberta no
+firewall da VPS, e o TLS fica por conta da Cloudflare.
+
+```bash
+CLOUDFLARE_API_TOKEN=<token da sua conta> \
+TP_HOSTNAME=transparenciapolicita.seudominio.com.br \
+./deploy/publicar-tunel.sh
 ```
-https://transparenciapolicita.luzempresarial.com.br
-```
 
-Esse endereço é um **domínio customizado de Worker** na Cloudflare: a borda
-termina o TLS e entrega a requisição ao Worker `transparenciapolicita-edge`, que é um
-proxy transparente — repassa consulta e resposta para a VPS sem tocar em texto e sem
-guardar estado. Quem chama continua vendo o app e a API do servidor, com o mesmo
-endereço de base (`/`).
+O script cria o túnel, publica a configuração de entrada, cria o registro CNAME do
+hostname, sobe o contêiner na VPS e confere a resposta pública. O token precisa das
+permissões *Account → Cloudflare Tunnel → Edit* e *Zone → DNS → Edit*, na **sua**
+conta — a zona do hostname precisa estar nela.
 
-Do outro lado, a VPS entrega o app em `127.0.0.1:8090` dentro da rede Docker do
-próprio projeto. A porta 8090 só aceita conexão vinda das faixas públicas da
-Cloudflare: o Docker publica a porta por DNAT e por isso escapa do UFW, então o filtro
-fica na cadeia `DOCKER-USER`, aplicada pelo `deploy/publicar-edge.sh`.
+Duas alternativas, caso o túnel não sirva:
 
-O **túnel de saída** (Cloudflare Tunnel) continua versionado como caminho alternativo,
-em `deploy/tunnel/config.yml`. Ele entrega o mesmo hostname sem nenhuma porta aberta,
-mas exige que o registro DNS aponte para `<TUNNEL_ID>.cfargotunnel.com` no lugar do
-registro que a Cloudflare cria para o domínio customizado — ou seja, exige permissão de
-escrita em DNS na zona, que a credencial de automação não tem. Para usá-lo:
-`TP_TUNNEL=1 ./deploy/deploy.sh /caminho/do/codigo`.
+| Caminho | Exige | Endereço |
+|---|---|---|
+| Túnel de saída | token de túnel + DNS na sua conta | `https://seu-hostname` com TLS, sem porta aberta |
+| Porta direta | abrir TCP 8090 no firewall da VPS (Hostinger) | `http://179.197.228.218:8090`, HTTP puro |
+| Worker de borda | token de Workers + DNS na sua conta | `https://seu-hostname`, com a borda no meio |
 
 Arquivos:
 
 ```
-deploy/worker/worker.js       proxy de borda (Worker) que serve o hostname do projeto
-deploy/publicar-edge.sh       publica o proxy e restringe a porta da VPS
-deploy/tunnel/config.yml      caminho alternativo: hostname, destino e regra de captura
+deploy/publicar-tunel.sh      publica o túnel: cria, configura, DNS, sobe e confere
+deploy/tunnel/config.yml      configuração do túnel (hostname, destino, captura)
+deploy/worker/worker.js       proxy de borda (Worker), caminho alternativo
+deploy/publicar-edge.sh       publica o proxy de borda e restringe a porta da VPS
+deploy/deploy.sh              sincroniza o código, constrói a imagem e sobe o app
 tunnel/credentials.json       segredo do túnel — só na VPS, nunca no git
 ```
 
-```bash
-./deploy/publicar-edge.sh      # publica o proxy e reaplica o filtro da VPS
-```
-
-**Dois scripts de terceiros são barrados pela CSP.** A zona tem Web Analytics e
-JavaScript Detection ligados, e a Cloudflare injeta os dois no HTML depois que a
-resposta sai do Worker — a CSP do projeto (`script-src 'self'`) bloqueia os dois, e o
-console mostra o aviso do bloqueio. O projeto não usa cookie nem rastreia IP, então a
-correção é desligar os dois recursos no painel da zona (Statistics → Web Analytics e
-Speed → Optimization → JavaScript Detection); o proxy também remove o beacon do HTML
-que ele consegue alcançar, mas a injeção da borda acontece depois do proxy.
+O `deploy/deploy.sh` sobe o app; o túnel é opt-in (`TP_TUNNEL=1`), porque o registro
+DNS e o token ficam fora do repositório.
 
 ### Proxy alternativo (Caddy)
 

@@ -4,7 +4,7 @@
 # `make ajuda` lista o que dá para fazer.
 # ============================================================================
 
-.PHONY: ajuda instalar dados rodar smoke smoke-subpath paridade api-viva mapa build edge url limpar
+.PHONY: ajuda instalar dados rodar smoke smoke-subpath paridade api-viva mapa build edge tunel url limpar
 
 PY      ?= python3
 NODE    ?= node
@@ -47,10 +47,19 @@ build: ## Constrói a imagem de produção
 edge: ## Publica o proxy de borda e restringe a porta da VPS
 	./deploy/publicar-edge.sh
 
+tunel: ## Publica o túnel de saída (precisa de CLOUDFLARE_API_TOKEN e TP_HOSTNAME)
+	./deploy/publicar-tunel.sh
+
 url: ## Mostra o endereço público e confere se está de pé
-	@echo "https://transparenciapolicita.luzempresarial.com.br"
-	@curl -sS -m 30 -o /dev/null -w "home    %{http_code}\n" https://transparenciapolicita.luzempresarial.com.br/
-	@curl -sS -m 30 -w "health  %{http_code}  " https://transparenciapolicita.luzempresarial.com.br/api/health; echo
+	@NOME=$$(sed -n 's/^[[:space:]]*- hostname: //p' deploy/tunnel/config.yml 2>/dev/null | head -1); \
+	if [ -n "$$NOME" ]; then \
+		echo "https://$$NOME"; \
+		curl -sS -m 30 -o /dev/null -w "home    %{http_code}\n" "https://$$NOME/"; \
+		curl -sS -m 30 -w "health  %{http_code}  " "https://$$NOME/api/health"; echo; \
+	else \
+		echo "sem hostname de tunel em deploy/tunnel/config.yml"; \
+		echo "roda: make tunel (com CLOUDFLARE_API_TOKEN e TP_HOSTNAME)"; \
+	fi
 
 limpar: ## Remove o banco local e as sobras de build
 	rm -rf data/*.sqlite data/*.sqlite-shm data/*.sqlite-wal
