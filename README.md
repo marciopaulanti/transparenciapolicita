@@ -87,32 +87,56 @@ próprios:
 
 ### Endereço público
 
-O projeto está publicado em:
+O projeto responde hoje em:
 
 ```
-https://transparenciapolicita.luzempresarial.com.br
+https://transparenciapolicita-edge.juliana-da-luz-oliveira.workers.dev
 ```
 
-Esse endereço é servido por um **túnel de saída** (Cloudflare Tunnel), não por porta
-aberta no firewall da VPS. O `cloudflared` roda em contêiner na rede Docker do
-próprio projeto, conecta de dentro para fora e entrega o tráfego no
-`http://transparenciapolicita:8080` — ou seja, o app nunca sai da rede dele e o
-firewall da VPS não precisa abrir nada além do que já estava aberto.
+Esse endereço é servido por um **proxy de borda** (Cloudflare Worker) que repassa
+consulta e resposta para a VPS, sem tocar em texto e sem guardar estado. O hostname é
+exclusivo do projeto, o TLS é da Cloudflare e a resposta é a mesma do app.
 
-Por que túnel e não uma porta alta? A borda do provedor filtra portas fora do
-conjunto liberado (80, 443 e as liberadas no painel), então a porta 8090 respondia
-de dentro da VPS e expirava na hora de chegar pela internet. O túnel resolve isso
-sem depender de regra de firewall e sem depender de IP dedicado.
+O **endereço próprio do domínio ainda não está no ar**, porque depende de um registro
+DNS que só pode ser criado no painel da Cloudflare: a credencial disponível para a
+automação lê e escreve Workers, mas não tem a permissão de DNS da zona. O registro é
+este, e é o único passo que falta:
+
+| Campo | Valor |
+| --- | --- |
+| Tipo | `CNAME` |
+| Nome | `transparenciapolicita` |
+| Alvo | `95fc371a-75c6-4337-a2b0-8766e4dd549c.cfargotunnel.com` |
+| Proxy | ligado (nuvem laranja) |
+
+Feito o registro, o mesmo hostname passa a responder pelo **túnel de saída**
+(Cloudflare Tunnel), que é o caminho definitivo: o `cloudflared` roda em contêiner na
+rede Docker do próprio projeto, conecta de dentro para fora e entrega o tráfego no
+`http://transparenciapolicita:8080`. O túnel não depende de porta liberada no firewall
+da VPS nem de IP dedicado.
+
+Por que túnel e não uma porta alta? A borda do provedor filtra portas fora do conjunto
+liberado (80, 443 e as liberadas no painel), então a porta 8090 respondia de dentro da
+VPS e expirava na hora de chegar pela internet. O proxy de borda existe só porque o
+registro DNS acima ainda não foi feito — ele resolve o mesmo problema pelo outro lado
+da borda, sem depender do painel.
 
 Arquivos:
 
 ```
 deploy/tunnel/config.yml      hostname público, destino no app e regra de captura
+deploy/worker/worker.js       proxy de borda (Worker) usado enquanto o DNS não existe
+deploy/publicar-edge.sh       publica o proxy e restringe a porta da VPS
 tunnel/credentials.json       segredo do túnel — só na VPS, nunca no git
 ```
 
-O registro DNS correspondente é um CNAME proxiado para
-`95fc371a-75c6-4337-a2b0-8766e4dd549c.cfargotunnel.com`.
+A porta 8090 da VPS só aceita conexão vinda das faixas públicas da Cloudflare: o
+Docker publica a porta por DNAT e por isso escapa do UFW, então o filtro fica na cadeia
+`DOCKER-USER`.
+
+```bash
+./deploy/publicar-edge.sh      # publica o proxy e reaplica o filtro da VPS
+```
 
 ### Proxy alternativo (Caddy)
 
@@ -124,7 +148,7 @@ rede Docker com nenhum outro serviço.
 ### Operação na VPS
 
 ```bash
-ssh root@179.197.228.218
+ssh hostinger
 cd /docker/transparenciapolicita
 
 docker compose ps                             # estado dos contêineres

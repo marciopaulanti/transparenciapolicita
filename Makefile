@@ -4,7 +4,7 @@
 # `make ajuda` lista o que dá para fazer.
 # ============================================================================
 
-.PHONY: ajuda instalar dados rodar smoke smoke-subpath paridade api-viva mapa build limpar
+.PHONY: ajuda instalar dados rodar smoke smoke-subpath paridade api-viva mapa build edge limpar
 
 PY      ?= python3
 NODE    ?= node
@@ -43,6 +43,15 @@ mapa: ## Regenera a geometria do mapa a partir do GeoJSON público
 
 build: ## Constrói a imagem de produção
 	docker build -t transparenciapolicita:1.0.0 .
+
+edge: ## Publica o proxy de borda e restringe a porta da VPS
+	./deploy/publicar-edge.sh
+
+dns: ## Mostra o registro DNS que falta para o hostname próprio
+	@echo "tipo    CNAME"
+	@echo "nome    transparenciapolicita"
+	@echo "alvo    95fc371a-75c6-4337-a2b0-8766e4dd549c.cfargotunnel.com"
+	@echo "proxy   ligado (nuvem laranja)"
 
 limpar: ## Remove o banco local e as sobras de build
 	rm -rf data/*.sqlite data/*.sqlite-shm data/*.sqlite-wal

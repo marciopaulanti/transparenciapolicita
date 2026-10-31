@@ -1,0 +1,29 @@
+# ============================================================================
+# Cloudflare Tunnel — Transparência Política (transparenciapolicita)
+# ---------------------------------------------------------------------------
+# Este arquivo vai para a VPS como ./tunnel/config.yml (o compose monta
+# ./tunnel em /etc/cloudflared). O segredo do túnel fica no
+# ./tunnel/credentials.json, que NUNCA entra no git — é criado na VPS com
+# o token do túnel.
+#
+# O túnel é de saída: o cloudflared conecta de dentro para fora e a borda
+# da Cloudflare entrega o tráfego. Por isso o projeto não precisa de porta
+# liberada no firewall da VPS nem de IP público em porta alta.
+#
+# Para trocar o hostname ou o destino, edite o bloco ingress abaixo e rode
+# de novo o deploy. Depois de pronto, o registro DNS é um CNAME para
+# <TUNNEL_ID>.cfargotunnel.com, proxiado pela Cloudflare.
+# ============================================================================
+
+tunnel: 95fc371a-75c6-4337-a2b0-8766e4dd549c
+credentials-file: /etc/cloudflared/credentials.json
+no-autoupdate: true
+
+ingress:
+  # Hostname público do projeto. O registro DNS dele aponta para este
+  # túnel; o app responde na rede Docker do próprio projeto.
+  - hostname: transparenciapolicita.luzempresarial.com.br
+    service: http://transparenciapolicita:8080
+
+  # Regra de captura: qualquer outro Host cai no mesmo app.
+  - service: http://transparenciapolicita:8080
